@@ -120,9 +120,16 @@ export class MenooSDK {
   /**
    * Get cart formatted for API submission
    */
-  getCartForApi(): ApiOrderItem[] {
+  getCartForApi(): { restaurant: string; type: string; items: ApiOrderItem[] } {
     const orderStore = useOrderStore(pinia);
-    return transformCartForApi(orderStore.getCart.items);
+    const restaurantStore = useRestaurantStore(pinia);
+    const restaurantId = restaurantStore.data?._id || this.config?.restaurantId;
+
+    return {
+      restaurant: restaurantId || "",
+      type: orderStore.type,
+      items: transformCartForApi(orderStore.getCart.items),
+    };
   }
 
   /**
@@ -169,11 +176,19 @@ export class MenooSDK {
     const restaurantId = restaurantStore.data?._id || this.config?.restaurantId;
     const language = i18n.getLanguage();
 
-    if (restaurantId) {
-      window.location.href = `https://menoo.ro/${language}/embedded/widget/${restaurantId}?mode=checkout`;
-    } else {
+    if (!restaurantId) {
       console.error("Cannot open checkout: Restaurant ID not found");
+      return;
     }
+
+    // Get cart data in API format (item IDs only for security)
+    const cartData = this.getCartForApi();
+
+    // Encode cart to base64
+    const encodedCart = btoa(encodeURIComponent(JSON.stringify(cartData)));
+
+    // Redirect with cart data in URL
+    window.location.href = `https://menoo.ro/${language}/embedded/widget/${restaurantId}?cart=${encodedCart}`;
   }
 
   /**

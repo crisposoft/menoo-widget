@@ -67,7 +67,7 @@
 import { computed, ref } from "vue";
 import { useCart, useFormatPrice } from "../composables";
 import { i18n } from "../services/i18n";
-import { useOrderStore, useRestaurantStore } from "../stores";
+import { useRestaurantStore } from "../stores";
 import type { CartItem } from "../types";
 
 const emit = defineEmits<{
@@ -77,7 +77,6 @@ const emit = defineEmits<{
 const { cart, updateCartItemQuantity } = useCart();
 const { formatPrice } = useFormatPrice();
 const restaurantStore = useRestaurantStore();
-const orderStore = useOrderStore();
 
 const animatingItems = ref<Set<number>>(new Set());
 
@@ -144,26 +143,8 @@ const decreaseQuantity = (index: number) => {
 };
 
 const handleCheckout = () => {
+  // Emit event to trigger checkout (SDK will handle the redirect)
   emit("checkoutClicked");
-
-  // Redirect to webapp checkout with cart data
-  const restaurantStore = useRestaurantStore();
-  const baseUrl = import.meta.env.VITE_WEBAPP_URL || "https://menoo.ro";
-  const restaurantId = restaurantStore.data?._id;
-
-  if (restaurantId) {
-    // Encode cart data as base64 to pass via URL (avoids cross-origin localStorage issues)
-    const cartData = {
-      restaurant: restaurantId,
-      type: orderStore.type || "delivery",
-      items: cart.value.items,
-    };
-
-    const encodedCart = btoa(encodeURIComponent(JSON.stringify(cartData)));
-
-    // Redirect with cart data in URL
-    window.location.href = `${baseUrl}/embedded/widget/${restaurantId}?cart=${encodedCart}`;
-  }
 };
 
 const t = (key: string, replacements?: Record<string, string | number>) =>

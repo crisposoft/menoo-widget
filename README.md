@@ -31,7 +31,7 @@ A lightweight, framework-agnostic JavaScript SDK for embedding Menoo restaurant 
 
     <!-- Initialize widget -->
     <script type="module">
-      import MenooSDK from "https://cdn.menoo.ro/widget/v1/menoo-sdk.js";
+      import MenooSDK from "https://cdn.menoo.ro/v1/menoo-sdk.js";
 
       await MenooSDK.init({
         restaurantId: "demo", // Replace with your restaurant ID
@@ -274,7 +274,7 @@ You can customize the widget container dimensions:
     <div id="menoo-widget"></div>
 
     <script type="module">
-      import MenooSDK from "https://cdn.menoo.ro/widget/v1/menoo-sdk.js";
+      import MenooSDK from "https://cdn.menoo.ro/v1/menoo-sdk.js";
 
       await MenooSDK.init({
         restaurantId: "demo",
@@ -367,7 +367,7 @@ onUnmounted(() => {
 function add_menoo_widget_scripts() {
     ?>
     <script type="module">
-        import MenooSDK from 'https://cdn.menoo.ro/widget/v1/menoo-sdk.js';
+        import MenooSDK from 'https://cdn.menoo.ro/v1/menoo-sdk.js';
 
         document.addEventListener('DOMContentLoaded', async () => {
             await MenooSDK.init({
@@ -883,7 +883,7 @@ MenooSDK.updateConfig({
 function add_menoo_widget() {
   ?>
   <script type="module">
-    import MenooSDK from 'https://cdn.menoo.ro/widget/v1/menoo-sdk.js';
+    import MenooSDK from 'https://cdn.menoo.ro/v1/menoo-sdk.js';
     await MenooSDK.init({
       restaurantId: '<?php echo get_option('menoo_restaurant_id'); ?>',
       container: '#menoo-widget',

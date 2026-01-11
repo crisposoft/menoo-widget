@@ -1,0 +1,54 @@
+declare const _default: {
+  "cart": {
+    "title": "Ваша корзина",
+    "empty": "Ваша корзина пуста",
+    "addToCart": "Добавить в корзину",
+    "add": "Добавить",
+    "remove": "Удалить",
+    "subtotal": "Промежуточный итог",
+    "deliveryFee": "Стоимость доставки",
+    "deliveryFreeOver": "Бесплатная доставка при заказе от {amount}",
+    "total": "Итого",
+    "checkout": "Перейти к оформлению",
+    "free": "Бесплатно"
+  },
+  "menu": {
+    "search": "Поиск",
+    "categories": "Категории",
+    "noResults": "Товары не найдены"
+  },
+  "item": {
+    "addToCart": "Добавить в корзину",
+    "options": "Опции",
+    "required": "Обязательно",
+    "optional": "Необязательно",
+    "notes": "Особые примечания",
+    "notesPlaceholder": "Добавить примечание к заказу...",
+    "quantity": "Количество"
+  },
+  "dialog": {
+    "note": "Специальные запросы",
+    "notePlaceholder": "Добавьте замечание для этого товара (например, без лука)...",
+    "addToCart": "Добавить в корзину • {price}",
+    "options": {
+      "required": "Обязательно",
+      "optional": "Необязательно",
+      "singleChoice": "Выберите один",
+      "multipleChoice": "Выберите несколько"
+    }
+  },
+  "restaurant": {
+    "open": "Открыто",
+    "closed": "Закрыто",
+    "today": "Сегодня",
+    "closed_today": "Сегодня закрыто",
+    "delivery": "Доставка",
+    "pickup": "Самовывоз"
+  },
+  "errors": {
+    "fetchError": "Не удалось загрузить данные ресторана"
+  }
+}
+;
+
+export default _default;

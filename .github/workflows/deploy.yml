@@ -1,0 +1,80 @@
+name: Build and Deploy Widget SDK
+
+on:
+  push:
+    branches: ["master", "main"]
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write # For gh-pages deployment
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build widget
+        run: npm run build
+
+      - name: Create deployment structure
+        run: |
+          mkdir -p deploy/v1
+          cp -r dist/* deploy/v1/
+          cp -r examples deploy/
+          
+          # Create version info
+          cat > deploy/version.json << EOF
+          {
+            "version": "1.0.0",
+            "commit": "${{ github.sha }}",
+            "date": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "branch": "${{ github.ref_name }}"
+          }
+          EOF
+          
+          # Create index redirect
+          cat > deploy/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="UTF-8" />
+              <meta http-equiv="refresh" content="0;url=/examples/" />
+              <title>Menoo Widget SDK</title>
+            </head>
+            <body>
+              <p>Redirecting to <a href="/examples/">examples</a>...</p>
+            </body>
+          </html>
+          EOF
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./deploy
+          publish_branch: gh-pages
+          cname: cdn.menoo.ro # Optional: only if using custom domain
+          commit_message: "Deploy widget ${{ github.sha }}"
+
+      - name: Summary
+        run: |
+          echo "✅ Widget deployed successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📦 **CDN URLs:**" >> $GITHUB_STEP_SUMMARY
+          echo "- \`https://cdn.menoo.ro/v1/menoo-sdk.js\`" >> $GITHUB_STEP_SUMMARY
+          echo "- \`https://cdn.menoo.ro/v1/menoo-sdk.umd.js\`" >> $GITHUB_STEP_SUMMARY
+          echo "- \`https://cdn.menoo.ro/v1/menoo-widget.css\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 **Examples:** https://cdn.menoo.ro/examples/" >> $GITHUB_STEP_SUMMARY

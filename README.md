@@ -31,7 +31,7 @@ A lightweight, framework-agnostic JavaScript SDK for embedding Menoo restaurant 
 
     <!-- Initialize widget -->
     <script type="module">
-      import MenooSDK from "https://cdn.menoo.ro/v1/menoo-sdk.js";
+      import MenooSDK from "https://widget.menoo.ro/v1/menoo-sdk.js";
 
       await MenooSDK.init({
         restaurantId: "demo", // Replace with your restaurant ID
@@ -250,7 +250,7 @@ You can customize the widget container dimensions:
     <div id="menoo-widget"></div>
 
     <script type="module">
-      import("https://cdn.menoo.ro/v1/menoo-sdk.js").then(async (module) => {
+      import("https://widget.menoo.ro/v1/menoo-sdk.js").then(async (module) => {
         const MenooSDK = module.default;
         await MenooSDK.init({
           restaurantId: "demo",
@@ -273,7 +273,7 @@ function RestaurantMenu({ restaurantId, language = "ro" }) {
 
   useEffect(() => {
     const initWidget = async () => {
-      const module = await import("https://cdn.menoo.ro/v1/menoo-sdk.js");
+      const module = await import("https://widget.menoo.ro/v1/menoo-sdk.js");
       sdkRef.current = module.default;
 
       await sdkRef.current.init({
@@ -316,7 +316,7 @@ const widgetContainer = ref(null);
 let MenooSDK = null;
 
 onMounted(async () => {
-  const module = await import("https://cdn.menoo.ro/v1/menoo-sdk.js");
+  const module = await import("https://widget.menoo.ro/v1/menoo-sdk.js");
   MenooSDK = module.default;
 
   await MenooSDK.init({
@@ -343,7 +343,7 @@ onUnmounted(() => {
 function add_menoo_widget_scripts() {
     ?>
     <script type="module">
-      import('https://cdn.menoo.ro/v1/menoo-sdk.js').then(async (module) => {
+      import('https://widget.menoo.ro/v1/menoo-sdk.js').then(async (module) => {
         const MenooSDK = module.default;
         await MenooSDK.init({
           restaurantId: '<?php echo esc_js(get_option('menoo_restaurant_id')); ?>',
@@ -390,7 +390,7 @@ export default function MenuWidget({
 
   useEffect(() => {
     const initWidget = async () => {
-      const module = await import("https://cdn.menoo.ro/v1/menoo-sdk.js");
+      const module = await import("https://widget.menoo.ro/v1/menoo-sdk.js");
       sdkRef.current = module.default;
 
       await sdkRef.current.init({
@@ -586,14 +586,14 @@ The widget uses CSS custom properties and scoped styles. If you have conflicts:
 Images are loaded from the Menoo CDN. Check:
 
 1. Network tab for failed requests
-2. Content Security Policy (CSP) allows images from `cdn.menoo.ro`
+2. Content Security Policy (CSP) allows images from `widget.menoo.ro`
 
 Add to your CSP if needed:
 
 ```html
 <meta
   http-equiv="Content-Security-Policy"
-  content="img-src 'self' https://cdn.menoo.ro;"
+  content="img-src 'self' https://widget.menoo.ro;"
 />
 ```
 

@@ -65,7 +65,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./deploy
           publish_branch: gh-pages
-          cname: cdn.menoo.ro # Optional: only if using custom domain
+          cname: widget.menoo.ro # Optional: only if using custom domain
           commit_message: "Deploy widget ${{ github.sha }}"
 
       - name: Summary
@@ -73,8 +73,8 @@ jobs:
           echo "✅ Widget deployed successfully!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "📦 **CDN URLs:**" >> $GITHUB_STEP_SUMMARY
-          echo "- \`https://cdn.menoo.ro/v1/menoo-sdk.js\`" >> $GITHUB_STEP_SUMMARY
-          echo "- \`https://cdn.menoo.ro/v1/menoo-sdk.umd.js\`" >> $GITHUB_STEP_SUMMARY
-          echo "- \`https://cdn.menoo.ro/v1/menoo-widget.css\`" >> $GITHUB_STEP_SUMMARY
+          echo "- \`https://widget.menoo.ro/v1/menoo-sdk.js\`" >> $GITHUB_STEP_SUMMARY
+          echo "- \`https://widget.menoo.ro/v1/menoo-sdk.umd.js\`" >> $GITHUB_STEP_SUMMARY
+          echo "- \`https://widget.menoo.ro/v1/menoo-widget.css\`" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "🔗 **Examples:** https://cdn.menoo.ro/examples/" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 **Examples:** https://widget.menoo.ro/examples/" >> $GITHUB_STEP_SUMMARY

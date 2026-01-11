@@ -17199,10 +17199,6 @@ class MenooSDK {
     await i18n.setLanguage(language);
     const metadataStore = useMetadataStore(pinia);
     metadataStore.setLanguage(language);
-    if (config.mode) {
-      const orderStore = useOrderStore(pinia);
-      orderStore.type = config.mode;
-    }
     try {
       const data = await apiClient.fetchRestaurant(
         config.restaurantId,
@@ -17293,12 +17289,12 @@ class MenooSDK {
    * Open checkout - Redirects to webapp checkout page
    */
   openCheckout() {
-    var _a25, _b25, _c;
+    var _a25, _b25;
     const restaurantStore = useRestaurantStore(pinia);
-    const baseUrl = ((_a25 = this.config) == null ? void 0 : _a25.webappUrl) || "https://menoo.ro";
-    const restaurantId = ((_b25 = restaurantStore.data) == null ? void 0 : _b25._id) || ((_c = this.config) == null ? void 0 : _c.restaurantId);
+    const restaurantId = ((_a25 = restaurantStore.data) == null ? void 0 : _a25._id) || ((_b25 = this.config) == null ? void 0 : _b25.restaurantId);
+    const language = i18n.getLanguage();
     if (restaurantId) {
-      window.location.href = `${baseUrl}/embedded/widget/${restaurantId}?mode=checkout`;
+      window.location.href = `https://menoo.ro/${language}/embedded/widget/${restaurantId}?mode=checkout`;
     } else {
       console.error("Cannot open checkout: Restaurant ID not found");
     }
@@ -17314,15 +17310,6 @@ class MenooSDK {
    */
   removeEventListener(event, callback) {
     window.removeEventListener(event, callback);
-  }
-  /**
-   * Update delivery mode
-   */
-  setMode(mode) {
-    if (!this.config) return;
-    this.config.mode = mode;
-    const orderStore = useOrderStore(pinia);
-    orderStore.type = mode;
   }
   renderFullLayout() {
     var _a25;

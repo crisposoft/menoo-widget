@@ -44,10 +44,6 @@ export declare class MenooSDK {
      * Remove event listener
      */
     removeEventListener(event: string, callback: EventListener): void;
-    /**
-     * Update delivery mode
-     */
-    setMode(mode: "delivery" | "pickup"): void;
     private renderFullLayout;
     private setupEventListeners;
 }

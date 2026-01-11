@@ -89,8 +89,6 @@ export interface WidgetConfig {
     restaurantId: string;
     container?: string | HTMLElement;
     language?: "ro" | "en" | "ru";
-    mode?: "delivery" | "pickup";
-    webappUrl?: string;
     stickyOffset?: number;
 }
 export interface RestaurantResponse {

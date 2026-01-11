@@ -53,12 +53,6 @@ export class MenooSDK {
     const metadataStore = useMetadataStore(pinia);
     metadataStore.setLanguage(language);
 
-    // Set mode
-    if (config.mode) {
-      const orderStore = useOrderStore(pinia);
-      orderStore.type = config.mode;
-    }
-
     // Load restaurant data
     try {
       const data = await apiClient.fetchRestaurant(

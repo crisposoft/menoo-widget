@@ -43,22 +43,6 @@ A lightweight, framework-agnostic JavaScript SDK for embedding Menoo restaurant 
 </html>
 ```
 
-### NPM Installation
-
-```bash
-npm install @menoo/widget
-```
-
-```javascript
-import MenooSDK from "@menoo/widget";
-
-await MenooSDK.init({
-  restaurantId: "YOUR_RESTAURANT_ID",
-  container: "#menoo-widget",
-  language: "ro",
-});
-```
-
 ## ⚙️ Configuration
 
 ### Basic Configuration
@@ -266,11 +250,12 @@ You can customize the widget container dimensions:
     <div id="menoo-widget"></div>
 
     <script type="module">
-      import MenooSDK from "https://cdn.menoo.ro/v1/menoo-sdk.js";
-
-      await MenooSDK.init({
-        restaurantId: "demo",
-        language: "ro",
+      import("https://cdn.menoo.ro/v1/menoo-sdk.js").then(async (module) => {
+        const MenooSDK = module.default;
+        await MenooSDK.init({
+          restaurantId: "demo",
+          language: "ro",
+        });
       });
     </script>
   </body>
@@ -279,28 +264,30 @@ You can customize the widget container dimensions:
 
 ### React Integration
 
-```jsx
+```tsx
 import { useEffect, useRef } from "react";
-import MenooSDK from "@menoo/widget";
 
 function RestaurantMenu({ restaurantId, language = "ro" }) {
   const containerRef = useRef(null);
+  const sdkRef = useRef<any>(null);
 
   useEffect(() => {
     const initWidget = async () => {
-      await MenooSDK.init({
+      const module = await import("https://cdn.menoo.ro/v1/menoo-sdk.js");
+      sdkRef.current = module.default;
+
+      await sdkRef.current.init({
         restaurantId,
         container: containerRef.current,
         language,
-        stickyOffset: 70, // If you have a fixed navbar
+        stickyOffset: 70,
       });
     };
 
     initWidget();
 
-    // Cleanup on unmount
     return () => {
-      MenooSDK.destroy();
+      sdkRef.current?.destroy();
     };
   }, [restaurantId, language]);
 
@@ -319,22 +306,19 @@ export default RestaurantMenu;
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import MenooSDK from "@menoo/widget";
 
 const props = defineProps({
-  restaurantId: {
-    type: String,
-    required: true,
-  },
-  language: {
-    type: String,
-    default: "ro",
-  },
+  restaurantId: { type: String, required: true },
+  language: { type: String, default: "ro" },
 });
 
 const widgetContainer = ref(null);
+let MenooSDK = null;
 
 onMounted(async () => {
+  const module = await import("https://cdn.menoo.ro/v1/menoo-sdk.js");
+  MenooSDK = module.default;
+
   await MenooSDK.init({
     restaurantId: props.restaurantId,
     container: widgetContainer.value,
@@ -343,7 +327,7 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-  MenooSDK.destroy();
+  MenooSDK?.destroy();
 });
 </script>
 ```
@@ -359,15 +343,14 @@ onUnmounted(() => {
 function add_menoo_widget_scripts() {
     ?>
     <script type="module">
-        import MenooSDK from 'https://cdn.menoo.ro/v1/menoo-sdk.js';
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            await MenooSDK.init({
-                restaurantId: '<?php echo esc_js(get_option('menoo_restaurant_id')); ?>',
-                container: '#menoo-widget',
-                language: '<?php echo substr(get_locale(), 0, 2); ?>'
-            });
+      import('https://cdn.menoo.ro/v1/menoo-sdk.js').then(async (module) => {
+        const MenooSDK = module.default;
+        await MenooSDK.init({
+          restaurantId: '<?php echo esc_js(get_option('menoo_restaurant_id')); ?>',
+          container: '#menoo-widget',
+          language: '<?php echo substr(get_locale(), 0, 2); ?>'
         });
+      });
     </script>
     <?php
 }
@@ -388,7 +371,7 @@ add_shortcode('menoo_menu', 'menoo_menu_shortcode');
 
 ### Next.js Integration
 
-```typescript
+```tsx
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -403,18 +386,16 @@ export default function MenuWidget({
   language = "ro",
 }: MenuWidgetProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const sdkRef = useRef<any>(null);
 
   useEffect(() => {
-    let sdk: any;
-
     const initWidget = async () => {
-      // Dynamic import to avoid SSR issues
-      const { default: MenooSDK } = await import("@menoo/widget");
-      sdk = MenooSDK;
+      const module = await import("https://cdn.menoo.ro/v1/menoo-sdk.js");
+      sdkRef.current = module.default;
 
-      await sdk.init({
+      await sdkRef.current.init({
         restaurantId,
-        container: containerRef.current!,
+        container: containerRef.current,
         language,
       });
     };
@@ -422,7 +403,7 @@ export default function MenuWidget({
     initWidget();
 
     return () => {
-      sdk?.destroy();
+      sdkRef.current?.destroy();
     };
   }, [restaurantId, language]);
 
@@ -824,85 +805,15 @@ Customize the widget appearance using CSS variables:
 }
 ```
 
-### Dark Mode
-
-```javascript
-MenooSDK.updateConfig({
-  theme: { mode: "dark" },
-});
-```
-
-## Integration Examples
-
-### WordPress
-
-```php
-// In your theme's functions.php
-function add_menoo_widget() {
-  ?>
-  <script type="module">
-    import MenooSDK from 'https://cdn.menoo.ro/v1/menoo-sdk.js';
-    await MenooSDK.init({
-      restaurantId: '<?php echo get_option('menoo_restaurant_id'); ?>',
-      container: '#menoo-widget',
-      language: '<?php echo get_locale() === 'ro_RO' ? 'ro' : 'en'; ?>'
-    });
-  </script>
-  <div id="menoo-widget"></div>
-  <?php
-}
-```
-
-### React
-
-```jsx
-import { useEffect } from "react";
-import MenooSDK from "@menoo/widget";
-
-function MenuWidget({ restaurantId }) {
-  useEffect(() => {
-    MenooSDK.init({
-      restaurantId,
-      container: "#menoo-widget",
-      language: "ro",
-    });
-
-    return () => MenooSDK.destroy();
-  }, [restaurantId]);
-
-  return <div id="menoo-widget" />;
-}
-```
-
-### Vue
-
-```vue
-<template>
-  <div ref="widgetContainer" />
-</template>
-
-<script setup>
-import { onMounted, onUnmounted, ref } from "vue";
-import MenooSDK from "@menoo/widget";
-
-const props = defineProps(["restaurantId"]);
-const widgetContainer = ref(null);
-
-onMounted(async () => {
-  await MenooSDK.init({
-    restaurantId: props.restaurantId,
-    container: widgetContainer.value,
-    language: "ro",
-  });
-});
-
-onUnmounted(() => {
-  MenooSDK.destroy();
-});
-</script>
-```
-
 ## Browser Support
+
+- Chrome/Edge 67+
+- Firefox 63+
+- Safari 10.1+
+- iOS Safari 10.3+
+- Android Chrome 67+
+
+## Development
 
 - Chrome/Edge 67+
 - Firefox 63+

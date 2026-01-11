@@ -8474,7 +8474,6 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       const { cart: cart2, updateCartItemQuantity } = useCart();
       const { formatPrice } = useFormatPrice();
       const restaurantStore = useRestaurantStore();
-      const orderStore = useOrderStore();
       const animatingItems = ref(/* @__PURE__ */ new Set());
       const isRestaurantOpen = computed(
         () => {
@@ -8531,20 +8530,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         }
       };
       const handleCheckout = () => {
-        var _a;
         emit2("checkoutClicked");
-        const restaurantStore2 = useRestaurantStore();
-        const baseUrl = "https://menoo.ro";
-        const restaurantId = (_a = restaurantStore2.data) == null ? void 0 : _a._id;
-        if (restaurantId) {
-          const cartData = {
-            restaurant: restaurantId,
-            type: orderStore.type || "delivery",
-            items: cart2.value.items
-          };
-          const encodedCart = btoa(encodeURIComponent(JSON.stringify(cartData)));
-          window.location.href = `${baseUrl}/embedded/widget/${restaurantId}?cart=${encodedCart}`;
-        }
       };
       const t = (key, replacements) => i18n.t(key, replacements);
       return (_ctx, _cache) => {
@@ -8608,7 +8594,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       };
     }
   });
-  const _style_0$6 = "\n.cart-container[data-v-d0af1d8b] {\n  background: var(--menoo-surface, #ffffff);\n  border-radius: var(--menoo-radius-md, 8px);\n  box-shadow: var(--menoo-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.12));\n  padding: var(--menoo-spacing-2, 16px);\n  position: sticky;\n  top: var(--menoo-cart-top, 0);\n  max-height: calc(100vh - var(--menoo-cart-top, 0) - 32px);\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n}\n.cart-header[data-v-d0af1d8b] {\n  font-size: var(--menoo-font-size-xl, 1.25rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  margin-bottom: var(--menoo-spacing-2, 16px);\n  padding-bottom: var(--menoo-spacing-1, 8px);\n  border-bottom: 2px solid var(--menoo-border, #e0e0e0);\n  margin-top: 0;\n}\n.cart-empty[data-v-d0af1d8b] {\n  text-align: center;\n  padding: var(--menoo-spacing-4, 32px) var(--menoo-spacing-2, 16px);\n  color: var(--menoo-text-secondary, #757575);\n}\n.cart-transition-enter-active[data-v-d0af1d8b],\n.cart-transition-leave-active[data-v-d0af1d8b] {\n  transition: all 0.3s ease;\n}\n.cart-transition-enter-from[data-v-d0af1d8b],\n.cart-transition-leave-to[data-v-d0af1d8b] {\n  opacity: 0;\n  transform: scale(0.95);\n}\n.cart-full[data-v-d0af1d8b] {\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n  min-height: 0;\n}\n.cart-items[data-v-d0af1d8b] {\n  flex: 1;\n  overflow-y: auto;\n  overflow-x: hidden;\n  margin-bottom: var(--menoo-spacing-2, 16px);\n}\n\n/* Cart item transitions */\n.cart-item-move[data-v-d0af1d8b] {\n  transition: transform 0.2s ease;\n}\n.cart-item-enter-active[data-v-d0af1d8b] {\n  transition: all 0.2s ease;\n}\n.cart-item-leave-active[data-v-d0af1d8b] {\n  transition: all 0.2s ease;\n  position: absolute;\n  width: calc(100% - var(--menoo-spacing-2, 16px) * 2);\n}\n.cart-item-enter-from[data-v-d0af1d8b] {\n  opacity: 0;\n  transform: scale(0.8);\n}\n.cart-item-leave-to[data-v-d0af1d8b] {\n  opacity: 0;\n  transform: scale(0.8);\n}\n.cart-item[data-v-d0af1d8b] {\n  display: flex;\n  gap: var(--menoo-spacing-2, 16px);\n  padding: var(--menoo-spacing-2, 16px);\n  border-bottom: 1px solid var(--menoo-border, #e0e0e0);\n  background: var(--menoo-surface, #ffffff);\n}\n.cart-item[data-v-d0af1d8b]:last-child {\n  border-bottom: none;\n}\n.item-details[data-v-d0af1d8b] {\n  flex: 1;\n  min-width: 0;\n}\n.item-name[data-v-d0af1d8b] {\n  font-weight: var(--menoo-font-weight-medium, 500);\n  margin-bottom: 4px;\n}\n.item-options[data-v-d0af1d8b] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin-bottom: 4px;\n}\n.item-note[data-v-d0af1d8b] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  font-style: italic;\n}\n.item-price[data-v-d0af1d8b] {\n  font-weight: var(--menoo-font-weight-bold, 700);\n  color: var(--menoo-primary, #f0ac28);\n  margin-top: 4px;\n}\n.item-quantity[data-v-d0af1d8b] {\n  display: flex;\n  align-items: center;\n  gap: var(--menoo-spacing-1, 8px);\n}\n.qty-btn[data-v-d0af1d8b] {\n  width: 28px;\n  height: 28px;\n  border: 1px solid var(--menoo-border, #e0e0e0);\n  border-radius: var(--menoo-radius-sm, 4px);\n  background: white;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  transition: all var(--menoo-transition-fast, 150ms);\n  font-size: 16px;\n  padding: 0;\n}\n.qty-btn[data-v-d0af1d8b]:hover {\n  background: var(--menoo-hover, #f5f5f5);\n  transform: scale(1.1);\n}\n.qty-btn[data-v-d0af1d8b]:active {\n  transform: scale(0.95);\n}\n.qty-value[data-v-d0af1d8b] {\n  min-width: 24px;\n  text-align: center;\n  font-weight: var(--menoo-font-weight-medium, 500);\n  transition: all 0.3s ease;\n}\n.qty-value.qty-animate[data-v-d0af1d8b] {\n  animation: qtyAnimation-d0af1d8b 0.3s ease;\n}\n@keyframes qtyAnimation-d0af1d8b {\n0% {\n    transform: scale(1);\n    color: inherit;\n}\n50% {\n    transform: scale(1.3);\n    color: var(--menoo-primary, #f0ac28);\n    font-weight: var(--menoo-font-weight-bold, 700);\n}\n100% {\n    transform: scale(1);\n    color: inherit;\n}\n}\n.cart-summary[data-v-d0af1d8b] {\n  border-top: 2px solid var(--menoo-border, #e0e0e0);\n  padding-top: var(--menoo-spacing-2, 16px);\n}\n.summary-row[data-v-d0af1d8b] {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: var(--menoo-spacing-1, 8px);\n  font-size: var(--menoo-font-size-md, 1rem);\n}\n.summary-label[data-v-d0af1d8b] {\n  color: var(--menoo-text-secondary, #757575);\n}\n.summary-value[data-v-d0af1d8b] {\n  font-weight: var(--menoo-font-weight-medium, 500);\n}\n.summary-total[data-v-d0af1d8b] {\n  font-size: var(--menoo-font-size-lg, 1.125rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  margin-top: var(--menoo-spacing-1, 8px);\n  padding-top: var(--menoo-spacing-1, 8px);\n  border-top: 1px solid var(--menoo-border, #e0e0e0);\n}\n.summary-total .summary-value[data-v-d0af1d8b] {\n  color: var(--menoo-primary, #f0ac28);\n}\n.checkout-btn[data-v-d0af1d8b] {\n  width: 100%;\n  padding: var(--menoo-spacing-2, 16px);\n  margin-top: var(--menoo-spacing-2, 16px);\n  background: var(--menoo-primary, #f0ac28);\n  color: white;\n  border: none;\n  border-radius: var(--menoo-radius-md, 8px);\n  font-size: var(--menoo-font-size-md, 1rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  cursor: pointer;\n  transition: all 0.3s ease;\n}\n.checkout-btn[data-v-d0af1d8b]:hover:not(:disabled) {\n  background: var(--menoo-primary-dark, #996d1a);\n  transform: translateY(-2px);\n  box-shadow: 0 4px 12px rgba(240, 172, 40, 0.4);\n}\n.checkout-btn[data-v-d0af1d8b]:active:not(:disabled) {\n  transform: translateY(0);\n  box-shadow: 0 2px 4px rgba(240, 172, 40, 0.3);\n}\n.checkout-btn[data-v-d0af1d8b]:disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n  background: var(--menoo-text-secondary, #757575);\n}\n.delivery-hint[data-v-d0af1d8b] {\n  font-size: var(--menoo-font-size-xs, 0.75rem);\n  color: var(--menoo-success, #388e3c);\n  margin-top: 4px;\n}\n@media (max-width: 768px) {\n.cart-container[data-v-d0af1d8b] {\n    position: static;\n    max-height: none;\n}\n}\n";
+  const _style_0$6 = "\n.cart-container[data-v-8f6fd6aa] {\n  background: var(--menoo-surface, #ffffff);\n  border-radius: var(--menoo-radius-md, 8px);\n  box-shadow: var(--menoo-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.12));\n  padding: var(--menoo-spacing-2, 16px);\n  position: sticky;\n  top: var(--menoo-cart-top, 0);\n  max-height: calc(100vh - var(--menoo-cart-top, 0) - 32px);\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n}\n.cart-header[data-v-8f6fd6aa] {\n  font-size: var(--menoo-font-size-xl, 1.25rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  margin-bottom: var(--menoo-spacing-2, 16px);\n  padding-bottom: var(--menoo-spacing-1, 8px);\n  border-bottom: 2px solid var(--menoo-border, #e0e0e0);\n  margin-top: 0;\n}\n.cart-empty[data-v-8f6fd6aa] {\n  text-align: center;\n  padding: var(--menoo-spacing-4, 32px) var(--menoo-spacing-2, 16px);\n  color: var(--menoo-text-secondary, #757575);\n}\n.cart-transition-enter-active[data-v-8f6fd6aa],\n.cart-transition-leave-active[data-v-8f6fd6aa] {\n  transition: all 0.3s ease;\n}\n.cart-transition-enter-from[data-v-8f6fd6aa],\n.cart-transition-leave-to[data-v-8f6fd6aa] {\n  opacity: 0;\n  transform: scale(0.95);\n}\n.cart-full[data-v-8f6fd6aa] {\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n  min-height: 0;\n}\n.cart-items[data-v-8f6fd6aa] {\n  flex: 1;\n  overflow-y: auto;\n  overflow-x: hidden;\n  margin-bottom: var(--menoo-spacing-2, 16px);\n}\n\n/* Cart item transitions */\n.cart-item-move[data-v-8f6fd6aa] {\n  transition: transform 0.2s ease;\n}\n.cart-item-enter-active[data-v-8f6fd6aa] {\n  transition: all 0.2s ease;\n}\n.cart-item-leave-active[data-v-8f6fd6aa] {\n  transition: all 0.2s ease;\n  position: absolute;\n  width: calc(100% - var(--menoo-spacing-2, 16px) * 2);\n}\n.cart-item-enter-from[data-v-8f6fd6aa] {\n  opacity: 0;\n  transform: scale(0.8);\n}\n.cart-item-leave-to[data-v-8f6fd6aa] {\n  opacity: 0;\n  transform: scale(0.8);\n}\n.cart-item[data-v-8f6fd6aa] {\n  display: flex;\n  gap: var(--menoo-spacing-2, 16px);\n  padding: var(--menoo-spacing-2, 16px);\n  border-bottom: 1px solid var(--menoo-border, #e0e0e0);\n  background: var(--menoo-surface, #ffffff);\n}\n.cart-item[data-v-8f6fd6aa]:last-child {\n  border-bottom: none;\n}\n.item-details[data-v-8f6fd6aa] {\n  flex: 1;\n  min-width: 0;\n}\n.item-name[data-v-8f6fd6aa] {\n  font-weight: var(--menoo-font-weight-medium, 500);\n  margin-bottom: 4px;\n}\n.item-options[data-v-8f6fd6aa] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin-bottom: 4px;\n}\n.item-note[data-v-8f6fd6aa] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  font-style: italic;\n}\n.item-price[data-v-8f6fd6aa] {\n  font-weight: var(--menoo-font-weight-bold, 700);\n  color: var(--menoo-primary, #f0ac28);\n  margin-top: 4px;\n}\n.item-quantity[data-v-8f6fd6aa] {\n  display: flex;\n  align-items: center;\n  gap: var(--menoo-spacing-1, 8px);\n}\n.qty-btn[data-v-8f6fd6aa] {\n  width: 28px;\n  height: 28px;\n  border: 1px solid var(--menoo-border, #e0e0e0);\n  border-radius: var(--menoo-radius-sm, 4px);\n  background: white;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  transition: all var(--menoo-transition-fast, 150ms);\n  font-size: 16px;\n  padding: 0;\n}\n.qty-btn[data-v-8f6fd6aa]:hover {\n  background: var(--menoo-hover, #f5f5f5);\n  transform: scale(1.1);\n}\n.qty-btn[data-v-8f6fd6aa]:active {\n  transform: scale(0.95);\n}\n.qty-value[data-v-8f6fd6aa] {\n  min-width: 24px;\n  text-align: center;\n  font-weight: var(--menoo-font-weight-medium, 500);\n  transition: all 0.3s ease;\n}\n.qty-value.qty-animate[data-v-8f6fd6aa] {\n  animation: qtyAnimation-8f6fd6aa 0.3s ease;\n}\n@keyframes qtyAnimation-8f6fd6aa {\n0% {\n    transform: scale(1);\n    color: inherit;\n}\n50% {\n    transform: scale(1.3);\n    color: var(--menoo-primary, #f0ac28);\n    font-weight: var(--menoo-font-weight-bold, 700);\n}\n100% {\n    transform: scale(1);\n    color: inherit;\n}\n}\n.cart-summary[data-v-8f6fd6aa] {\n  border-top: 2px solid var(--menoo-border, #e0e0e0);\n  padding-top: var(--menoo-spacing-2, 16px);\n}\n.summary-row[data-v-8f6fd6aa] {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: var(--menoo-spacing-1, 8px);\n  font-size: var(--menoo-font-size-md, 1rem);\n}\n.summary-label[data-v-8f6fd6aa] {\n  color: var(--menoo-text-secondary, #757575);\n}\n.summary-value[data-v-8f6fd6aa] {\n  font-weight: var(--menoo-font-weight-medium, 500);\n}\n.summary-total[data-v-8f6fd6aa] {\n  font-size: var(--menoo-font-size-lg, 1.125rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  margin-top: var(--menoo-spacing-1, 8px);\n  padding-top: var(--menoo-spacing-1, 8px);\n  border-top: 1px solid var(--menoo-border, #e0e0e0);\n}\n.summary-total .summary-value[data-v-8f6fd6aa] {\n  color: var(--menoo-primary, #f0ac28);\n}\n.checkout-btn[data-v-8f6fd6aa] {\n  width: 100%;\n  padding: var(--menoo-spacing-2, 16px);\n  margin-top: var(--menoo-spacing-2, 16px);\n  background: var(--menoo-primary, #f0ac28);\n  color: white;\n  border: none;\n  border-radius: var(--menoo-radius-md, 8px);\n  font-size: var(--menoo-font-size-md, 1rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  cursor: pointer;\n  transition: all 0.3s ease;\n}\n.checkout-btn[data-v-8f6fd6aa]:hover:not(:disabled) {\n  background: var(--menoo-primary-dark, #996d1a);\n  transform: translateY(-2px);\n  box-shadow: 0 4px 12px rgba(240, 172, 40, 0.4);\n}\n.checkout-btn[data-v-8f6fd6aa]:active:not(:disabled) {\n  transform: translateY(0);\n  box-shadow: 0 2px 4px rgba(240, 172, 40, 0.3);\n}\n.checkout-btn[data-v-8f6fd6aa]:disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n  background: var(--menoo-text-secondary, #757575);\n}\n.delivery-hint[data-v-8f6fd6aa] {\n  font-size: var(--menoo-font-size-xs, 0.75rem);\n  color: var(--menoo-success, #388e3c);\n  margin-top: 4px;\n}\n@media (max-width: 768px) {\n.cart-container[data-v-8f6fd6aa] {\n    position: static;\n    max-height: none;\n}\n}\n";
   const _export_sfc = (sfc, props) => {
     const target = sfc.__vccOpts || sfc;
     for (const [key, val] of props) {
@@ -8616,7 +8602,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     }
     return target;
   };
-  const MenooCart = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["styles", [_style_0$6]], ["__scopeId", "data-v-d0af1d8b"]]);
+  const MenooCart = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["styles", [_style_0$6]], ["__scopeId", "data-v-8f6fd6aa"]]);
   const delta = 2.5;
   const VueHorizontal = /* @__PURE__ */ defineComponent({
     name: "VueHorizontal",
@@ -10153,8 +10139,15 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
      * Get cart formatted for API submission
      */
     getCartForApi() {
+      var _a, _b;
       const orderStore = useOrderStore(pinia);
-      return transformCartForApi(orderStore.getCart.items);
+      const restaurantStore = useRestaurantStore(pinia);
+      const restaurantId = ((_a = restaurantStore.data) == null ? void 0 : _a._id) || ((_b = this.config) == null ? void 0 : _b.restaurantId);
+      return {
+        restaurant: restaurantId || "",
+        type: orderStore.type,
+        items: transformCartForApi(orderStore.getCart.items)
+      };
     }
     /**
      * Get item count in cart
@@ -10195,11 +10188,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       const restaurantStore = useRestaurantStore(pinia);
       const restaurantId = ((_a = restaurantStore.data) == null ? void 0 : _a._id) || ((_b = this.config) == null ? void 0 : _b.restaurantId);
       const language = i18n.getLanguage();
-      if (restaurantId) {
-        window.location.href = `https://menoo.ro/${language}/embedded/widget/${restaurantId}?mode=checkout`;
-      } else {
+      if (!restaurantId) {
         console.error("Cannot open checkout: Restaurant ID not found");
+        return;
       }
+      const cartData = this.getCartForApi();
+      const encodedCart = btoa(encodeURIComponent(JSON.stringify(cartData)));
+      window.location.href = `https://menoo.ro/${language}/embedded/widget/${restaurantId}?cart=${encodedCart}`;
     }
     /**
      * Add event listener

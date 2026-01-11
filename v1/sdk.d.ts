@@ -19,7 +19,11 @@ export declare class MenooSDK {
     /**
      * Get cart formatted for API submission
      */
-    getCartForApi(): ApiOrderItem[];
+    getCartForApi(): {
+        restaurant: string;
+        type: string;
+        items: ApiOrderItem[];
+    };
     /**
      * Get item count in cart
      */

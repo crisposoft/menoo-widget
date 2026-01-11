@@ -105,16 +105,26 @@
     </div>
 
     <div class="controls">
+      <input
+        type="text"
+        id="restaurant-id"
+        placeholder="Enter Restaurant ID"
+        value="demo"
+        style="
+          padding: 10px;
+          border: 1px solid #e0e0e0;
+          border-radius: 4px;
+          font-size: 14px;
+          min-width: 250px;
+        "
+      />
+      <button id="btn-load-widget">Load Widget</button>
       <button id="btn-clear-cart">Clear Cart</button>
       <button id="btn-get-cart">Get Cart Info</button>
       <select id="language-select">
         <option value="ro">Română</option>
         <option value="en">English</option>
         <option value="ru">Русский</option>
-      </select>
-      <select id="theme-select">
-        <option value="light">Light Theme</option>
-        <option value="dark">Dark Theme</option>
       </select>
     </div>
 
@@ -131,31 +141,38 @@
     <script type="module">
       import MenooSDK from "https://cdn.menoo.ro/v1/menoo-sdk.js";
 
+      let isInitialized = false;
+
       // Initialize the widget
       async function initWidget() {
+        const restaurantId = document.getElementById("restaurant-id").value;
+        const language = document.getElementById("language-select").value;
+
+        if (!restaurantId) {
+          alert("Please enter a Restaurant ID");
+          return;
+        }
+
+        // Destroy existing widget if already initialized
+        if (isInitialized) {
+          MenooSDK.destroy();
+          isInitialized = false;
+        }
+
         try {
           await MenooSDK.init({
-            restaurantId: "demo", // Replace with actual restaurant ID
+            restaurantId: restaurantId,
             container: "#menoo-widget-container",
-            language: "ro",
+            language: language,
             stickyOffset: 0, // Top offset for sticky elements (set to your header height if you have one)
-            layout: "full",
-            theme: {
-              primaryColor: "#F0AC28",
-              mode: "light",
-            },
-            onCheckout: (cart) => {
-              logEvent("Checkout clicked", cart);
-              alert(
-                `Checkout with ${cart.totalCount} items, total: ${cart.totalPrice}`
-              );
-            },
           });
 
-          logEvent("Widget initialized successfully");
+          logEvent("Widget initialized successfully", { restaurantId, language });
+          isInitialized = true;
         } catch (error) {
           logEvent("Initialization error", error);
           console.error("Failed to initialize widget:", error);
+          alert("Failed to load widget. Please check the Restaurant ID and try again.");
         }
       }
 
@@ -184,8 +201,18 @@
 
         // Control buttons
         document
+          .getElementById("btn-load-widget")
+          .addEventListener("click", () => {
+            initWidget();
+          });
+
+        document
           .getElementById("btn-clear-cart")
           .addEventListener("click", () => {
+            if (!isInitialized) {
+              alert("Please load the widget first");
+              return;
+            }
             MenooSDK.clearCart();
             logEvent("Cart cleared manually");
           });
@@ -193,12 +220,16 @@
         document
           .getElementById("btn-get-cart")
           .addEventListener("click", () => {
+            if (!isInitialized) {
+              alert("Please load the widget first");
+              return;
+            }
             // Get cart in API format (ready to send to backend)
-            const apiCartItems = MenooSDK.getCartForApi();
+            const apiCart = MenooSDK.getCartForApi();
             const info = {
               itemCount: MenooSDK.getItemCount(),
               total: MenooSDK.getTotalPrice(),
-              items: apiCartItems,
+              cart: apiCart,
             };
             logEvent("Current cart info (API format)", info);
             alert(JSON.stringify(info, null, 2));
@@ -207,19 +238,11 @@
         document
           .getElementById("language-select")
           .addEventListener("change", async (e) => {
+            if (!isInitialized) return;
             const lang = e.target.value;
-            await MenooSDK.setLanguage(lang);
+            // Reload widget with new language
+            await initWidget();
             logEvent(`Language changed to ${lang}`);
-          });
-
-        document
-          .getElementById("theme-select")
-          .addEventListener("change", (e) => {
-            const mode = e.target.value;
-            MenooSDK.updateConfig({
-              theme: { mode },
-            });
-            logEvent(`Theme changed to ${mode}`);
           });
       }
 
@@ -247,7 +270,7 @@
 
       // Initialize
       setupEventListeners();
-      initWidget();
+      logEvent("Ready to load widget. Enter a Restaurant ID and click 'Load Widget'");
     </script>
   </body>
 </html>

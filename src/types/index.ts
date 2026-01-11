@@ -101,8 +101,6 @@ export interface WidgetConfig {
   restaurantId: string;
   container?: string | HTMLElement;
   language?: "ro" | "en" | "ru";
-  mode?: "delivery" | "pickup";
-  webappUrl?: string; // Base URL for webapp redirects (default: https://menoo.ro)
   stickyOffset?: number; // Offset from top for sticky elements in pixels (default: 0)
 }
 

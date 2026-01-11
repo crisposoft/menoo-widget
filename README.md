@@ -68,8 +68,6 @@ await MenooSDK.init({
   restaurantId: "demo", // Required: Your unique restaurant ID
   container: "#menoo-widget", // Optional: CSS selector or HTMLElement (default: '#menoo-widget')
   language: "ro", // Optional: 'ro' | 'en' | 'ru' (default: 'ro')
-  mode: "delivery", // Optional: 'delivery' | 'pickup' (default: 'delivery')
-  webappUrl: "https://menoo.ro", // Optional: Custom webapp URL (default: 'https://menoo.ro')
   stickyOffset: 0, // Optional: Top offset in pixels if you have a fixed header (default: 0)
 });
 ```
@@ -81,8 +79,6 @@ await MenooSDK.init({
 | `restaurantId` | `string`                 | **Required**         | Your unique restaurant identifier from Menoo dashboard                                    |
 | `container`    | `string \| HTMLElement`  | `'#menoo-widget'`    | DOM element or CSS selector where the widget will render                                  |
 | `language`     | `'ro' \| 'en' \| 'ru'`   | `'ro'`               | Interface language for menu and cart                                                      |
-| `mode`         | `'delivery' \| 'pickup'` | `'delivery'`         | Order fulfillment type                                                                    |
-| `webappUrl`    | `string`                 | `'https://menoo.ro'` | Base URL for checkout redirect (use custom domain if you have one)                        |
 | `stickyOffset` | `number`                 | `0`                  | Top offset in pixels for sticky category nav and cart (useful if you have a fixed header) |
 
 ### Example with Fixed Header
@@ -154,10 +150,6 @@ cart.items.forEach((item) => {
 ```javascript
 // Clear all items from cart
 MenooSDK.clearCart();
-
-// Change order mode
-MenooSDK.setMode("pickup"); // Switch to pickup
-MenooSDK.setMode("delivery"); // Switch to delivery
 
 // Trigger checkout (redirects to webapp)
 MenooSDK.openCheckout();
@@ -644,57 +636,33 @@ Add to your CSP if needed:
 ## 📊 Performance
 
 - **Bundle Size**: ~114KB gzipped (includes Vue 3 runtime + Pinia)
-- **Initial Load**: < 500ms on 3G connection
-- **Time to Interactive**: < 1s
-- **Lighthouse Score**: 95+ Performance
-
-**Optimization tips:**
-
-1. **Lazy load the widget** if it's below the fold
-2. **Preconnect to API domain**:
-   ```html
-   <link rel="preconnect" href="https://api.menoo.ro" />
-   ```
-3. **Use CDN** for faster delivery (automatically cached)
+- Use CDN for faster delivery with automatic caching
+- Preconnect to API domain for better performance:
+  ```html
+  <link rel="preconnect" href="https://api.menoo.ro" />
+  ```
 
 ## 🔒 Security
 
 - All API communication over HTTPS
 - No sensitive data stored in widget (authentication happens in webapp)
-- Cart data encrypted in localStorage
-- CSRF protection on all API endpoints
-- Regular security audits
+- Cart data stored securely in localStorage
 
 ## 📄 License
 
 MIT © Menoo
 
+## � What's Next?
+
+After users add items to the cart and click checkout, they'll be redirected to the Menoo webapp for authentication and payment. The complete ordering flow is handled by the platform.
+
+---
+
 ## 💬 Support
 
-Need help? We're here for you:
-
-- **Email**: support@menoo.ro
-- **Documentation**: https://docs.menoo.ro
-- **GitHub Issues**: https://github.com/menoo/widget/issues
-- **Live Chat**: Available on https://menoo.ro (Mon-Fri, 9AM-6PM EET)
-
-## 🚀 What's Next?
-
-After users add items to the cart and click "Continue to Checkout", they'll be redirected to:
-
-```
-https://menoo.ro/embedded/widget/{restaurantId}?mode=checkout
-```
-
-The Menoo webapp will:
-
-1. Load the cart from localStorage
-2. Ask for authentication (login/register)
-3. Request delivery address (for delivery orders)
-4. Show payment options (cash on delivery / online payment)
-5. Process the order and send confirmation
-
-You don't need to implement any of this - it's all handled by the Menoo platform!
+- **Email**: contact@menoo.ro
+- **Documentation**: https://menoo.ro/docs
+- **GitHub**: https://github.com/crisposoft/menoo-widget
 
 ---
 
@@ -838,16 +806,6 @@ window.addEventListener("menoo:order-completed", (e) => {
 });
 ```
 
-### `menoo:error`
-
-Fired when an error occurs.
-
-```javascript
-window.addEventListener("menoo:error", (e) => {
-  console.error("Widget error:", e.detail.error, e.detail.context);
-});
-```
-
 ## Theming
 
 ### CSS Custom Properties
@@ -974,8 +932,6 @@ MIT © Menoo
 
 ## Support
 
-For issues and questions:
-
-- Email: support@menoo.ro
-- Documentation: https://docs.menoo.ro
-- GitHub: https://github.com/menoo/widget
+- **Email**: contact@menoo.ro
+- **Documentation**: https://menoo.ro/docs
+- **GitHub**: https://github.com/crisposoft/menoo-widget

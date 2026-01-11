@@ -2,7 +2,7 @@ name: Build and Deploy Widget SDK
 
 on:
   push:
-    branches: ["master", "main"]
+    branches: ["master"]
   workflow_dispatch: # Allow manual trigger
 
 permissions:

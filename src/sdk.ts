@@ -172,11 +172,11 @@ export class MenooSDK {
    */
   openCheckout(): void {
     const restaurantStore = useRestaurantStore(pinia);
-    const baseUrl = this.config?.webappUrl || "https://menoo.ro";
     const restaurantId = restaurantStore.data?._id || this.config?.restaurantId;
+    const language = i18n.getLanguage();
 
     if (restaurantId) {
-      window.location.href = `${baseUrl}/embedded/widget/${restaurantId}?mode=checkout`;
+      window.location.href = `https://menoo.ro/${language}/embedded/widget/${restaurantId}?mode=checkout`;
     } else {
       console.error("Cannot open checkout: Restaurant ID not found");
     }
@@ -194,17 +194,6 @@ export class MenooSDK {
    */
   removeEventListener(event: string, callback: EventListener): void {
     window.removeEventListener(event, callback);
-  }
-
-  /**
-   * Update delivery mode
-   */
-  setMode(mode: "delivery" | "pickup"): void {
-    if (!this.config) return;
-
-    this.config.mode = mode;
-    const orderStore = useOrderStore(pinia);
-    orderStore.type = mode;
   }
 
   private renderFullLayout(): void {

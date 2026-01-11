@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menoo Widget - Quick Start Example</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background: #f5f5f5;
+      }
+
+      .header {
+        max-width: 1280px;
+        margin: 0 auto 20px;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        color: #212121;
+      }
+
+      p {
+        margin: 0;
+        color: #757575;
+      }
+
+      .controls {
+        max-width: 1280px;
+        margin: 0 auto 20px;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        background: #f0ac28;
+        color: white;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      button:hover {
+        background: #996d1a;
+      }
+
+      select {
+        padding: 10px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      #menoo-widget-container {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .event-log {
+        max-width: 1280px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .event-log h3 {
+        margin: 0 0 10px;
+      }
+
+      .event-log pre {
+        background: #f5f5f5;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+        font-size: 12px;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Menoo Widget - Quick Start Example</h1>
+      <p>
+        This example demonstrates the Menoo Widget SDK with full ordering
+        capabilities
+      </p>
+    </div>
+
+    <div class="controls">
+      <button id="btn-clear-cart">Clear Cart</button>
+      <button id="btn-get-cart">Get Cart Info</button>
+      <select id="language-select">
+        <option value="ro">Română</option>
+        <option value="en">English</option>
+        <option value="ru">Русский</option>
+      </select>
+      <select id="theme-select">
+        <option value="light">Light Theme</option>
+        <option value="dark">Dark Theme</option>
+      </select>
+    </div>
+
+    <!-- Widget Container -->
+    <div id="menoo-widget-container"></div>
+
+    <!-- Event Log -->
+    <div class="event-log">
+      <h3>Event Log</h3>
+      <pre id="event-log">Waiting for widget to initialize...</pre>
+    </div>
+
+    <!-- Load the Menoo Widget SDK -->
+    <script type="module">
+      import MenooSDK from "../dist/menoo-sdk.js";
+
+      // Initialize the widget
+      async function initWidget() {
+        try {
+          await MenooSDK.init({
+            restaurantId: "demo", // Replace with actual restaurant ID
+            container: "#menoo-widget-container",
+            language: "ro",
+            stickyOffset: 0, // Top offset for sticky elements (set to your header height if you have one)
+            layout: "full",
+            theme: {
+              primaryColor: "#F0AC28",
+              mode: "light",
+            },
+            mode: "delivery",
+            onCheckout: (cart) => {
+              logEvent("Checkout clicked", cart);
+              alert(
+                `Checkout with ${cart.totalCount} items, total: ${cart.totalPrice}`
+              );
+            },
+          });
+
+          logEvent("Widget initialized successfully");
+        } catch (error) {
+          logEvent("Initialization error", error);
+          console.error("Failed to initialize widget:", error);
+        }
+      }
+
+      // Event listeners
+      function setupEventListeners() {
+        // Widget events
+        window.addEventListener("menoo:ready", (e) => {
+          logEvent("Widget ready", e.detail);
+        });
+
+        window.addEventListener("menoo:cart-changed", (e) => {
+          logEvent("Cart changed", e.detail);
+        });
+
+        window.addEventListener("menoo:item-added", (e) => {
+          logEvent("Item added", e.detail);
+        });
+
+        window.addEventListener("menoo:checkout-started", (e) => {
+          logEvent("Checkout started", e.detail);
+        });
+
+        window.addEventListener("menoo:error", (e) => {
+          logEvent("Error", e.detail);
+        });
+
+        // Control buttons
+        document
+          .getElementById("btn-clear-cart")
+          .addEventListener("click", () => {
+            MenooSDK.clearCart();
+            logEvent("Cart cleared manually");
+          });
+
+        document
+          .getElementById("btn-get-cart")
+          .addEventListener("click", () => {
+            // Get cart in API format (ready to send to backend)
+            const apiCartItems = MenooSDK.getCartForApi();
+            const info = {
+              itemCount: MenooSDK.getItemCount(),
+              total: MenooSDK.getTotalPrice(),
+              items: apiCartItems,
+            };
+            logEvent("Current cart info (API format)", info);
+            alert(JSON.stringify(info, null, 2));
+          });
+
+        document
+          .getElementById("language-select")
+          .addEventListener("change", async (e) => {
+            const lang = e.target.value;
+            await MenooSDK.setLanguage(lang);
+            logEvent(`Language changed to ${lang}`);
+          });
+
+        document
+          .getElementById("theme-select")
+          .addEventListener("change", (e) => {
+            const mode = e.target.value;
+            MenooSDK.updateConfig({
+              theme: { mode },
+            });
+            logEvent(`Theme changed to ${mode}`);
+          });
+      }
+
+      // Event logger
+      const eventLog = [];
+      function logEvent(message, data) {
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = { timestamp, message, data };
+        eventLog.unshift(entry);
+
+        // Keep only last 20 events
+        if (eventLog.length > 20) {
+          eventLog.pop();
+        }
+
+        document.getElementById("event-log").textContent = eventLog
+          .map(
+            (e) =>
+              `[${e.timestamp}] ${e.message}${
+                e.data ? ": " + JSON.stringify(e.data) : ""
+              }`
+          )
+          .join("\n");
+      }
+
+      // Initialize
+      setupEventListeners();
+      initWidget();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,351 @@
+/* CSS Reset & Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS Custom Properties */
+:host,
+.menoo-widget {
+  /* Colors */
+  --menoo-primary: #F0AC28;
+  --menoo-primary-light: #fdf5e8;
+  --menoo-primary-dark: #996d1a;
+  --menoo-secondary: #424242;
+  --menoo-surface: #ffffff;
+  --menoo-background: #f5f5f5;
+  --menoo-error: #d32f2f;
+  --menoo-success: #388e3c;
+  --menoo-text-primary: #212121;
+  --menoo-text-secondary: #757575;
+  --menoo-text-disabled: #bdbdbd;
+  --menoo-border: #e0e0e0;
+  --menoo-divider: #e0e0e0;
+  --menoo-hover: #f5f5f5;
+
+  /* Spacing (Material Design 8px scale) */
+  --menoo-spacing-1: 8px;
+  --menoo-spacing-2: 16px;
+  --menoo-spacing-3: 24px;
+  --menoo-spacing-4: 32px;
+  --menoo-spacing-5: 40px;
+  --menoo-spacing-6: 48px;
+  --menoo-spacing-7: 56px;
+
+  /* Typography */
+  --menoo-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --menoo-font-size-xs: 0.75rem;
+  --menoo-font-size-sm: 0.875rem;
+  --menoo-font-size-md: 1rem;
+  --menoo-font-size-lg: 1.125rem;
+  --menoo-font-size-xl: 1.25rem;
+  --menoo-font-size-2xl: 1.5rem;
+  --menoo-font-weight-regular: 400;
+  --menoo-font-weight-medium: 500;
+  --menoo-font-weight-bold: 700;
+  --menoo-line-height: 1.5;
+
+  /* Border Radius */
+  --menoo-radius-sm: 4px;
+  --menoo-radius-md: 8px;
+  --menoo-radius-lg: 12px;
+  --menoo-radius-xl: 16px;
+  --menoo-radius-round: 50%;
+
+  /* Shadows */
+  --menoo-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --menoo-shadow-md: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  --menoo-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
+  --menoo-shadow-xl: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05);
+
+  /* Transitions */
+  --menoo-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --menoo-transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --menoo-transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Z-index layers */
+  --menoo-z-dropdown: 1000;
+  --menoo-z-sticky: 1020;
+  --menoo-z-fixed: 1030;
+  --menoo-z-modal-backdrop: 1040;
+  --menoo-z-modal: 1050;
+  --menoo-z-popover: 1060;
+  --menoo-z-tooltip: 1070;
+
+  /* Breakpoints (for reference in JS) */
+  --menoo-breakpoint-sm: 640px;
+  --menoo-breakpoint-md: 768px;
+  --menoo-breakpoint-lg: 1024px;
+  --menoo-breakpoint-xl: 1280px;
+}
+
+/* Dark Theme */
+:host(.dark),
+.menoo-widget.dark {
+  --menoo-surface: #1e1e1e;
+  --menoo-background: #121212;
+  --menoo-text-primary: #ffffff;
+  --menoo-text-secondary: #b0b0b0;
+  --menoo-text-disabled: #6b6b6b;
+  --menoo-border: #2c2c2c;
+  --menoo-divider: #2c2c2c;
+  --menoo-hover: #2c2c2c;
+}
+
+/* Base Typography */
+:host,
+.menoo-widget {
+  font-family: var(--menoo-font-family);
+  font-size: var(--menoo-font-size-md);
+  font-weight: var(--menoo-font-weight-regular);
+  line-height: var(--menoo-line-height);
+  color: var(--menoo-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--menoo-font-weight-bold);
+  line-height: 1.2;
+  margin: 0;
+}
+
+h1 { font-size: var(--menoo-font-size-2xl); }
+h2 { font-size: var(--menoo-font-size-xl); }
+h3 { font-size: var(--menoo-font-size-lg); }
+h4 { font-size: var(--menoo-font-size-md); }
+h5 { font-size: var(--menoo-font-size-sm); }
+h6 { font-size: var(--menoo-font-size-xs); }
+
+p {
+  margin: 0;
+}
+
+/* Utility Classes */
+.menoo-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--menoo-spacing-2);
+}
+
+.menoo-card {
+  background: var(--menoo-surface);
+  border-radius: var(--menoo-radius-md);
+  box-shadow: var(--menoo-shadow-sm);
+  overflow: hidden;
+}
+
+.menoo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--menoo-spacing-1);
+  padding: var(--menoo-spacing-1) var(--menoo-spacing-2);
+  font-family: inherit;
+  font-size: var(--menoo-font-size-md);
+  font-weight: var(--menoo-font-weight-medium);
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  border: none;
+  border-radius: var(--menoo-radius-md);
+  cursor: pointer;
+  transition: all var(--menoo-transition-fast);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menoo-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.menoo-btn-primary {
+  background: var(--menoo-primary);
+  color: #ffffff;
+}
+
+.menoo-btn-primary:hover:not(:disabled) {
+  background: var(--menoo-primary-dark);
+}
+
+.menoo-btn-secondary {
+  background: var(--menoo-secondary);
+  color: #ffffff;
+}
+
+.menoo-btn-secondary:hover:not(:disabled) {
+  background: #616161;
+}
+
+.menoo-btn-outline {
+  background: transparent;
+  color: var(--menoo-primary);
+  border: 1px solid var(--menoo-primary);
+}
+
+.menoo-btn-outline:hover:not(:disabled) {
+  background: var(--menoo-primary-light);
+}
+
+.menoo-input {
+  width: 100%;
+  padding: var(--menoo-spacing-1) var(--menoo-spacing-2);
+  font-family: inherit;
+  font-size: var(--menoo-font-size-md);
+  line-height: var(--menoo-line-height);
+  color: var(--menoo-text-primary);
+  background: var(--menoo-surface);
+  border: 1px solid var(--menoo-border);
+  border-radius: var(--menoo-radius-md);
+  transition: border-color var(--menoo-transition-fast);
+}
+
+.menoo-input:focus {
+  outline: none;
+  border-color: var(--menoo-primary);
+}
+
+.menoo-input::placeholder {
+  color: var(--menoo-text-disabled);
+}
+
+/* Grid System */
+.menoo-grid {
+  display: grid;
+  gap: var(--menoo-spacing-2);
+}
+
+.menoo-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.menoo-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.menoo-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+  .menoo-grid-3,
+  .menoo-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .menoo-grid-2,
+  .menoo-grid-3,
+  .menoo-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Flex Utilities */
+.menoo-flex {
+  display: flex;
+}
+
+.menoo-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.menoo-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menoo-flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Spacing Utilities */
+.menoo-mt-1 { margin-top: var(--menoo-spacing-1); }
+.menoo-mt-2 { margin-top: var(--menoo-spacing-2); }
+.menoo-mt-3 { margin-top: var(--menoo-spacing-3); }
+.menoo-mb-1 { margin-bottom: var(--menoo-spacing-1); }
+.menoo-mb-2 { margin-bottom: var(--menoo-spacing-2); }
+.menoo-mb-3 { margin-bottom: var(--menoo-spacing-3); }
+.menoo-p-1 { padding: var(--menoo-spacing-1); }
+.menoo-p-2 { padding: var(--menoo-spacing-2); }
+.menoo-p-3 { padding: var(--menoo-spacing-3); }
+
+/* Text Utilities */
+.menoo-text-center { text-align: center; }
+.menoo-text-left { text-align: left; }
+.menoo-text-right { text-align: right; }
+.menoo-text-bold { font-weight: var(--menoo-font-weight-bold); }
+.menoo-text-medium { font-weight: var(--menoo-font-weight-medium); }
+.menoo-text-secondary { color: var(--menoo-text-secondary); }
+.menoo-text-disabled { color: var(--menoo-text-disabled); }
+.menoo-text-error { color: var(--menoo-error); }
+.menoo-text-success { color: var(--menoo-success); }
+
+/* Loading Spinner */
+.menoo-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--menoo-border);
+  border-top-color: var(--menoo-primary);
+  border-radius: 50%;
+  animation: menoo-spin 0.6s linear infinite;
+}
+
+@keyframes menoo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Overlay */
+.menoo-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: var(--menoo-z-modal-backdrop);
+  animation: menoo-fade-in var(--menoo-transition-fast);
+}
+
+@keyframes menoo-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--menoo-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--menoo-border);
+  border-radius: var(--menoo-radius-md);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--menoo-text-disabled);
+}

@@ -1,0 +1,47 @@
+{
+  "name": "@menoo/widget",
+  "version": "1.0.0",
+  "description": "Menoo ordering widget - Web Components SDK for restaurant integration",
+  "type": "module",
+  "main": "./dist/menoo-sdk.umd.js",
+  "module": "./dist/menoo-sdk.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/menoo-sdk.js",
+      "require": "./dist/menoo-sdk.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:watch": "vite build --watch",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "menoo",
+    "widget",
+    "web-components",
+    "ordering",
+    "restaurant"
+  ],
+  "author": "Menoo",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/compiler-sfc": "^3.5.13",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vite-plugin-dts": "^4.3.0"
+  },
+  "dependencies": {
+    "pinia": "^3.0.4",
+    "vue": "^3.5.13",
+    "vue-horizontal": "github:crisposoft/vue-horizontal#next-refactor",
+    "vue-use-active-scroll": "^1.1.3"
+  }
+}

@@ -7,7 +7,6 @@
           v-if="restaurant?._id"
           :href="menooUrl"
           target="_blank"
-          rel="noopener noreferrer"
           class="menoo-link"
         >
           {{ i18n.t("restaurant.seeOnMenoo") }} →

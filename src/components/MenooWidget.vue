@@ -38,6 +38,17 @@
         <span class="cart-badge">{{ cart.items.length }}</span>
       </button>
     </Transition>
+
+    <!-- Footer -->
+    <div class="menoo-footer">
+      <a
+        href="https://parteneri.menoo.ro"
+        target="_blank"
+        class="menoo-footer-link"
+      >
+        Powered by Menoo
+      </a>
+    </div>
   </div>
 </template>
 
@@ -271,5 +282,22 @@ function updateCartStickyPosition() {
     opacity: 0;
     transform: scale(0.8);
   }
+}
+
+.menoo-footer {
+  text-align: center;
+  padding: var(--menoo-spacing-2, 16px);
+  margin-top: var(--menoo-spacing-3, 24px);
+}
+
+.menoo-footer-link {
+  color: var(--menoo-text-secondary, #757575);
+  font-size: var(--menoo-font-size-sm, 0.875rem);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.menoo-footer-link:hover {
+  color: var(--menoo-text-primary, #212121);
 }
 </style>

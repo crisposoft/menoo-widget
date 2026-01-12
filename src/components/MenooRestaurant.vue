@@ -3,6 +3,15 @@
     <div class="restaurant-info">
       <div>
         <h1 class="restaurant-name">{{ restaurant?.name || "Loading..." }}</h1>
+        <a
+          v-if="restaurant?._id"
+          :href="menooUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="menoo-link"
+        >
+          {{ i18n.t("restaurant.seeOnMenoo") }} →
+        </a>
         <p v-if="restaurant?.city" class="restaurant-city">
           {{ restaurant.city }}
         </p>
@@ -34,6 +43,16 @@ const statusClass = computed(() =>
 const statusText = computed(() =>
   i18n.t(`restaurant.${isOpen.value ? "open" : "closed"}`)
 );
+
+const menooUrl = computed(() => {
+  if (!restaurant.value) return "#";
+
+  const lang = i18n.getLanguage();
+  const city = restaurant.value.city?.toLowerCase().replace(/\s+/g, "-") || "";
+  const slug = restaurant.value.slug || restaurant.value._id;
+
+  return `https://menoo.ro/${lang}/${city}/${slug}`;
+});
 
 const todayHours = computed(() => {
   if (!restaurant.value?.schedule) return null;
@@ -142,5 +161,53 @@ const todayHours = computed(() => {
   height: 8px;
   border-radius: 50%;
   background: currentColor;
+}
+
+.menoo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--menoo-font-size-sm, 0.875rem);
+  font-weight: var(--menoo-font-weight-medium, 500);
+  color: white;
+  text-decoration: none;
+  padding: 6px 12px;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  border-radius: var(--menoo-radius-md, 8px);
+  background: var(--menoo-primary, #f0ac28);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.menoo-link::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.menoo-link:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+.menoo-link:hover {
+  background: var(--menoo-primary-dark, #996d1a);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(240, 172, 40, 0.3);
+}
+
+.menoo-link:active {
+  transform: translateY(0);
 }
 </style>

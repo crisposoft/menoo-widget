@@ -43,7 +43,8 @@
     "today": "Today",
     "closed_today": "Closed today",
     "delivery": "Delivery",
-    "pickup": "Pickup"
+    "pickup": "Pickup",
+    "seeOnMenoo": "See on Menoo"
   },
   "errors": {
     "fetchError": "Failed to load restaurant data"

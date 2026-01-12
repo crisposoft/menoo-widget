@@ -7,7 +7,6 @@ export declare const useRestaurantStore: import('pinia').StoreDefinition<"restau
             _id: string;
             slug?: string | undefined;
             name: string;
-            city?: string | undefined;
             address?: {
                 city?: string | undefined;
             } | undefined;
@@ -85,7 +84,6 @@ export declare const useRestaurantStore: import('pinia').StoreDefinition<"restau
         _id: string;
         slug?: string | undefined;
         name: string;
-        city?: string | undefined;
         address?: {
             city?: string | undefined;
         } | undefined;
@@ -162,7 +160,6 @@ export declare const useRestaurantStore: import('pinia').StoreDefinition<"restau
             _id: string;
             slug?: string | undefined;
             name: string;
-            city?: string | undefined;
             address?: {
                 city?: string | undefined;
             } | undefined;

@@ -9848,6 +9848,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "MenooRestaurant",
   setup(__props) {
     const { restaurant: restaurant2 } = useRestaurant();
+    const slugify = (text) => {
+      return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    };
     const isOpen = computed(() => {
       var _a;
       return ((_a = restaurant2.value) == null ? void 0 : _a.status) === "open";
@@ -9862,12 +9865,13 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       var _a;
       if (!restaurant2.value) return "#";
       const lang = i18n.getLanguage();
-      const city = (((_a = restaurant2.value.address) == null ? void 0 : _a.city) || restaurant2.value.city || "").toLowerCase().replace(/\s+/g, "-");
+      const cityRaw = ((_a = restaurant2.value.address) == null ? void 0 : _a.city) || "";
+      const city = cityRaw ? slugify(cityRaw) : "";
       const slug = restaurant2.value.slug || restaurant2.value._id;
       if (!city) {
-        return `https://menoo.ro/r/${slug}`;
+        return `https://menoo.ro/${lang}/romania/restaurant-${slug}`;
       }
-      return `https://menoo.ro/${lang}/${city}/${slug}`;
+      return `https://menoo.ro/${lang}/${city}/restaurant-${slug}`;
     });
     const todayHours = computed(() => {
       var _a;
@@ -9918,8 +9922,8 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const _style_0$1 = '\n.restaurant-header[data-v-7bcc5162] {\n  background: var(--menoo-surface, #ffffff);\n  padding: var(--menoo-spacing-2, 16px);\n  border-radius: var(--menoo-radius-md, 8px);\n  box-shadow: var(--menoo-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.12));\n  margin-bottom: var(--menoo-spacing-2, 16px);\n}\n.restaurant-info[data-v-7bcc5162] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  gap: var(--menoo-spacing-1, 8px);\n}\n.restaurant-name[data-v-7bcc5162] {\n  font-size: var(--menoo-font-size-xl, 1.25rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  color: var(--menoo-text-primary, #212121);\n  margin: 0;\n}\n.restaurant-city[data-v-7bcc5162] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 4px 0 0 0;\n}\n.restaurant-meta[data-v-7bcc5162] {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  gap: 6px;\n}\n.restaurant-hours[data-v-7bcc5162] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 0;\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  white-space: nowrap;\n}\n.restaurant-hours[data-v-7bcc5162]::before {\n  content: "🕐";\n  font-size: 14px;\n}\n.restaurant-status[data-v-7bcc5162] {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 4px 12px;\n  border-radius: var(--menoo-radius-lg, 12px);\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n}\n.status-open[data-v-7bcc5162] {\n  background: #e8f5e9;\n  color: var(--menoo-success, #388e3c);\n}\n.status-closed[data-v-7bcc5162] {\n  background: #ffebee;\n  color: var(--menoo-error, #d32f2f);\n}\n.status-dot[data-v-7bcc5162] {\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: currentColor;\n}\n.menoo-link[data-v-7bcc5162] {\n  display: inline-flex;\n  align-items: center;\n  gap: 4px;\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n  color: white;\n  text-decoration: none;\n  padding: 6px 12px;\n  margin-top: 6px;\n  margin-bottom: 4px;\n  border-radius: var(--menoo-radius-md, 8px);\n  background: var(--menoo-primary, #f0ac28);\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  white-space: nowrap;\n  border: none;\n  position: relative;\n  overflow: hidden;\n}\n.menoo-link[data-v-7bcc5162]::after {\n  content: "";\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 0;\n  height: 0;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.5);\n  transform: translate(-50%, -50%);\n  transition: width 0.6s, height 0.6s;\n}\n.menoo-link[data-v-7bcc5162]:active::after {\n  width: 300px;\n  height: 300px;\n}\n.menoo-link[data-v-7bcc5162]:hover {\n  background: var(--menoo-primary-dark, #996d1a);\n  transform: translateY(-1px);\n  box-shadow: 0 2px 8px rgba(240, 172, 40, 0.3);\n}\n.menoo-link[data-v-7bcc5162]:active {\n  transform: translateY(0);\n}\n';
-const MenooRestaurant = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["styles", [_style_0$1]], ["__scopeId", "data-v-7bcc5162"]]);
+const _style_0$1 = '\n.restaurant-header[data-v-29d209ac] {\n  background: var(--menoo-surface, #ffffff);\n  padding: var(--menoo-spacing-2, 16px);\n  border-radius: var(--menoo-radius-md, 8px);\n  box-shadow: var(--menoo-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.12));\n  margin-bottom: var(--menoo-spacing-2, 16px);\n}\n.restaurant-info[data-v-29d209ac] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  gap: var(--menoo-spacing-1, 8px);\n}\n.restaurant-name[data-v-29d209ac] {\n  font-size: var(--menoo-font-size-xl, 1.25rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  color: var(--menoo-text-primary, #212121);\n  margin: 0;\n}\n.restaurant-city[data-v-29d209ac] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 4px 0 0 0;\n}\n.restaurant-meta[data-v-29d209ac] {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  gap: 6px;\n}\n.restaurant-hours[data-v-29d209ac] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 0;\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  white-space: nowrap;\n}\n.restaurant-hours[data-v-29d209ac]::before {\n  content: "🕐";\n  font-size: 14px;\n}\n.restaurant-status[data-v-29d209ac] {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 4px 12px;\n  border-radius: var(--menoo-radius-lg, 12px);\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n}\n.status-open[data-v-29d209ac] {\n  background: #e8f5e9;\n  color: var(--menoo-success, #388e3c);\n}\n.status-closed[data-v-29d209ac] {\n  background: #ffebee;\n  color: var(--menoo-error, #d32f2f);\n}\n.status-dot[data-v-29d209ac] {\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: currentColor;\n}\n.menoo-link[data-v-29d209ac] {\n  display: inline-flex;\n  align-items: center;\n  gap: 4px;\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n  color: var(--menoo-primary, #f0ac28);\n  text-decoration: none;\n  padding: 0;\n  margin-top: 6px;\n  margin-bottom: 4px;\n  background: transparent;\n  transition: all 0.2s ease;\n  white-space: nowrap;\n  border: none;\n}\n.menoo-link[data-v-29d209ac]:hover {\n  color: var(--menoo-primary-dark, #996d1a);\n  transform: translateX(2px);\n}\n.menoo-link[data-v-29d209ac]:active {\n  transform: translateX(0);\n}\n';
+const MenooRestaurant = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["styles", [_style_0$1]], ["__scopeId", "data-v-29d209ac"]]);
 const _hoisted_1 = { class: "menoo-widget-container" };
 const _hoisted_2 = { class: "menoo-widget-main" };
 const _hoisted_3 = { class: "cart-badge" };

@@ -2,7 +2,6 @@ export interface Restaurant {
     _id: string;
     slug?: string;
     name: string;
-    city?: string;
     address?: {
         city?: string;
     };

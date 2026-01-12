@@ -11,9 +11,6 @@
         >
           {{ i18n.t("restaurant.seeOnMenoo") }} →
         </a>
-        <p v-if="restaurant?.city" class="restaurant-city">
-          {{ restaurant.city }}
-        </p>
       </div>
       <div v-if="restaurant" class="restaurant-meta">
         <div :class="['restaurant-status', statusClass]">
@@ -47,8 +44,15 @@ const menooUrl = computed(() => {
   if (!restaurant.value) return "#";
 
   const lang = i18n.getLanguage();
-  const city = restaurant.value.city?.toLowerCase().replace(/\s+/g, "-") || "";
+  const city = (restaurant.value.address?.city || restaurant.value.city || "")
+    .toLowerCase()
+    .replace(/\s+/g, "-");
   const slug = restaurant.value.slug || restaurant.value._id;
+
+  // If no city, construct URL without city parameter
+  if (!city) {
+    return `https://menoo.ro/r/${slug}`;
+  }
 
   return `https://menoo.ro/${lang}/${city}/${slug}`;
 });

@@ -3,8 +3,10 @@ export interface Restaurant {
   _id: string;
   slug?: string;
   name: string;
-  city: string;
-  address?: string;
+  city?: string;
+  address?: {
+    city?: string;
+  };
   delivery: DeliveryConfig;
   schedule?: Schedule;
   status?: "open" | "closed";

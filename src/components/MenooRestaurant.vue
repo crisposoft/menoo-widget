@@ -32,6 +32,15 @@ import { i18n } from "../services/i18n";
 
 const { restaurant } = useRestaurant();
 
+const slugify = (text: string): string => {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+};
+
 const isOpen = computed(() => restaurant.value?.status === "open");
 const statusClass = computed(() =>
   isOpen.value ? "status-open" : "status-closed"
@@ -44,17 +53,16 @@ const menooUrl = computed(() => {
   if (!restaurant.value) return "#";
 
   const lang = i18n.getLanguage();
-  const city = (restaurant.value.address?.city || restaurant.value.city || "")
-    .toLowerCase()
-    .replace(/\s+/g, "-");
+  const cityRaw = restaurant.value.address?.city || "";
+  const city = cityRaw ? slugify(cityRaw) : "";
   const slug = restaurant.value.slug || restaurant.value._id;
 
   // If no city, construct URL without city parameter
   if (!city) {
-    return `https://menoo.ro/r/${slug}`;
+    return `https://menoo.ro/${lang}/romania/restaurant-${slug}`;
   }
 
-  return `https://menoo.ro/${lang}/${city}/${slug}`;
+  return `https://menoo.ro/${lang}/${city}/restaurant-${slug}`;
 });
 
 const todayHours = computed(() => {
@@ -172,45 +180,23 @@ const todayHours = computed(() => {
   gap: 4px;
   font-size: var(--menoo-font-size-sm, 0.875rem);
   font-weight: var(--menoo-font-weight-medium, 500);
-  color: white;
+  color: var(--menoo-primary, #f0ac28);
   text-decoration: none;
-  padding: 6px 12px;
+  padding: 0;
   margin-top: 6px;
   margin-bottom: 4px;
-  border-radius: var(--menoo-radius-md, 8px);
-  background: var(--menoo-primary, #f0ac28);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  transition: all 0.2s ease;
   white-space: nowrap;
   border: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.menoo-link::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
-
-.menoo-link:active::after {
-  width: 300px;
-  height: 300px;
 }
 
 .menoo-link:hover {
-  background: var(--menoo-primary-dark, #996d1a);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(240, 172, 40, 0.3);
+  color: var(--menoo-primary-dark, #996d1a);
+  transform: translateX(2px);
 }
 
 .menoo-link:active {
-  transform: translateY(0);
+  transform: translateX(0);
 }
 </style>

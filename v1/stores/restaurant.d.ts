@@ -7,8 +7,10 @@ export declare const useRestaurantStore: import('pinia').StoreDefinition<"restau
             _id: string;
             slug?: string | undefined;
             name: string;
-            city: string;
-            address?: string | undefined;
+            city?: string | undefined;
+            address?: {
+                city?: string | undefined;
+            } | undefined;
             delivery: {
                 fee: number;
                 feeThreshold: number;
@@ -83,8 +85,10 @@ export declare const useRestaurantStore: import('pinia').StoreDefinition<"restau
         _id: string;
         slug?: string | undefined;
         name: string;
-        city: string;
-        address?: string | undefined;
+        city?: string | undefined;
+        address?: {
+            city?: string | undefined;
+        } | undefined;
         delivery: {
             fee: number;
             feeThreshold: number;
@@ -158,8 +162,10 @@ export declare const useRestaurantStore: import('pinia').StoreDefinition<"restau
             _id: string;
             slug?: string | undefined;
             name: string;
-            city: string;
-            address?: string | undefined;
+            city?: string | undefined;
+            address?: {
+                city?: string | undefined;
+            } | undefined;
             delivery: {
                 fee: number;
                 feeThreshold: number;

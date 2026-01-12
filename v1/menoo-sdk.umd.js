@@ -8448,7 +8448,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   };
   const _hoisted_5$5 = { class: "cart-items" };
   const _hoisted_6$5 = { class: "item-details" };
-  const _hoisted_7$5 = { class: "item-name" };
+  const _hoisted_7$4 = { class: "item-name" };
   const _hoisted_8$3 = {
     key: 0,
     class: "item-options"
@@ -8551,7 +8551,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                           class: "cart-item"
                         }, [
                           createBaseVNode("div", _hoisted_6$5, [
-                            createBaseVNode("div", _hoisted_7$5, toDisplayString(cartItem.item.name), 1),
+                            createBaseVNode("div", _hoisted_7$4, toDisplayString(cartItem.item.name), 1),
                             getOptionsText(cartItem) ? (openBlock(), createElementBlock("div", _hoisted_8$3, toDisplayString(getOptionsText(cartItem)), 1)) : createCommentVNode("", true),
                             cartItem.note ? (openBlock(), createElementBlock("div", _hoisted_9$3, toDisplayString(cartItem.note), 1)) : createCommentVNode("", true),
                             createBaseVNode("div", _hoisted_10$3, toDisplayString(unref(formatPrice)(cartItem.price)), 1)
@@ -8943,7 +8943,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   const _hoisted_4$4 = { class: "category-title" };
   const _hoisted_5$4 = { class: "category-scroll-container" };
   const _hoisted_6$4 = ["onClick"];
-  const _hoisted_7$4 = { class: "category-count" };
+  const _hoisted_7$3 = { class: "category-count" };
   const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     __name: "MenooCategoryNav",
     emits: ["categorySelected", "categorySearch"],
@@ -9057,7 +9057,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                       onClick: ($event) => selectCategory(category._id)
                     }, [
                       createTextVNode(toDisplayString(category.name) + " ", 1),
-                      createBaseVNode("span", _hoisted_7$4, toDisplayString(((_a = category.items) == null ? void 0 : _a.length) || 0), 1)
+                      createBaseVNode("span", _hoisted_7$3, toDisplayString(((_a = category.items) == null ? void 0 : _a.length) || 0), 1)
                     ], 10, _hoisted_6$4)
                   ]);
                 }), 128))
@@ -9260,7 +9260,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     class: "option-optional"
   };
   const _hoisted_6$3 = { class: "option-subtitle" };
-  const _hoisted_7$3 = {
+  const _hoisted_7$2 = {
     key: 0,
     class: "option-choices"
   };
@@ -9362,7 +9362,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 option.required ? (openBlock(), createElementBlock("span", _hoisted_4$3, toDisplayString(unref(t)("dialog.options.required")), 1)) : (openBlock(), createElementBlock("span", _hoisted_5$3, toDisplayString(unref(t)("dialog.options.optional")), 1))
               ]),
               createBaseVNode("div", _hoisted_6$3, toDisplayString(option.type === "single" ? unref(t)("dialog.options.singleChoice") : unref(t)("dialog.options.multipleChoice")), 1),
-              option.type === "single" ? (openBlock(), createElementBlock("div", _hoisted_7$3, [
+              option.type === "single" ? (openBlock(), createElementBlock("div", _hoisted_7$2, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList(option.values, (choice) => {
                   return openBlock(), createElementBlock("label", {
                     key: choice._id,
@@ -9416,7 +9416,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   const _hoisted_4$2 = ["src", "alt"];
   const _hoisted_5$2 = { class: "dialog-body" };
   const _hoisted_6$2 = { class: "dialog-title" };
-  const _hoisted_7$2 = {
+  const _hoisted_7$1 = {
     key: 0,
     class: "dialog-description"
   };
@@ -9554,7 +9554,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                       ])) : createCommentVNode("", true),
                       createBaseVNode("div", _hoisted_5$2, [
                         createBaseVNode("h2", _hoisted_6$2, toDisplayString(__props.item.name), 1),
-                        __props.item.description ? (openBlock(), createElementBlock("p", _hoisted_7$2, toDisplayString(__props.item.description), 1)) : createCommentVNode("", true),
+                        __props.item.description ? (openBlock(), createElementBlock("p", _hoisted_7$1, toDisplayString(__props.item.description), 1)) : createCommentVNode("", true),
                         __props.item.options && __props.item.options.length > 0 ? (openBlock(), createBlock(MenooItemOptions, {
                           key: 1,
                           options: __props.item.options,
@@ -9616,7 +9616,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   const _hoisted_4$1 = { class: "items-grid" };
   const _hoisted_5$1 = ["onClick"];
   const _hoisted_6$1 = ["src", "alt"];
-  const _hoisted_7$1 = { class: "item-content" };
+  const _hoisted_7 = { class: "item-content" };
   const _hoisted_8 = { class: "item-name" };
   const _hoisted_9 = {
     key: 0,
@@ -9807,7 +9807,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                       alt: item2.name,
                       loading: "lazy"
                     }, null, 8, _hoisted_6$1)) : createCommentVNode("", true),
-                    createBaseVNode("div", _hoisted_7$1, [
+                    createBaseVNode("div", _hoisted_7, [
                       createBaseVNode("h3", _hoisted_8, toDisplayString(item2.name), 1),
                       item2.description ? (openBlock(), createElementBlock("p", _hoisted_9, toDisplayString(item2.description), 1)) : createCommentVNode("", true),
                       createBaseVNode("div", _hoisted_10, [
@@ -9841,14 +9841,10 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   const _hoisted_3$1 = { class: "restaurant-name" };
   const _hoisted_4 = ["href"];
   const _hoisted_5 = {
-    key: 1,
-    class: "restaurant-city"
-  };
-  const _hoisted_6 = {
     key: 0,
     class: "restaurant-meta"
   };
-  const _hoisted_7 = {
+  const _hoisted_6 = {
     key: 0,
     class: "restaurant-hours"
   };
@@ -9870,8 +9866,11 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         var _a;
         if (!restaurant2.value) return "#";
         const lang = i18n.getLanguage();
-        const city = ((_a = restaurant2.value.city) == null ? void 0 : _a.toLowerCase().replace(/\s+/g, "-")) || "";
+        const city = (((_a = restaurant2.value.address) == null ? void 0 : _a.city) || restaurant2.value.city || "").toLowerCase().replace(/\s+/g, "-");
         const slug = restaurant2.value.slug || restaurant2.value._id;
+        if (!city) {
+          return `https://menoo.ro/r/${slug}`;
+        }
         return `https://menoo.ro/${lang}/${city}/${slug}`;
       });
       const todayHours = computed(() => {
@@ -9897,7 +9896,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         return `${i18n.t("restaurant.today")}: ${hours}`;
       });
       return (_ctx, _cache) => {
-        var _a, _b, _c;
+        var _a, _b;
         return openBlock(), createElementBlock("div", _hoisted_1$1, [
           createBaseVNode("div", _hoisted_2$1, [
             createBaseVNode("div", null, [
@@ -9907,25 +9906,24 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 href: menooUrl.value,
                 target: "_blank",
                 class: "menoo-link"
-              }, toDisplayString(unref(i18n).t("restaurant.seeOnMenoo")) + " → ", 9, _hoisted_4)) : createCommentVNode("", true),
-              ((_c = unref(restaurant2)) == null ? void 0 : _c.city) ? (openBlock(), createElementBlock("p", _hoisted_5, toDisplayString(unref(restaurant2).city), 1)) : createCommentVNode("", true)
+              }, toDisplayString(unref(i18n).t("restaurant.seeOnMenoo")) + " → ", 9, _hoisted_4)) : createCommentVNode("", true)
             ]),
-            unref(restaurant2) ? (openBlock(), createElementBlock("div", _hoisted_6, [
+            unref(restaurant2) ? (openBlock(), createElementBlock("div", _hoisted_5, [
               createBaseVNode("div", {
                 class: normalizeClass(["restaurant-status", statusClass.value])
               }, [
                 _cache[0] || (_cache[0] = createBaseVNode("span", { class: "status-dot" }, null, -1)),
                 createBaseVNode("span", null, toDisplayString(statusText.value), 1)
               ], 2),
-              todayHours.value ? (openBlock(), createElementBlock("p", _hoisted_7, toDisplayString(todayHours.value), 1)) : createCommentVNode("", true)
+              todayHours.value ? (openBlock(), createElementBlock("p", _hoisted_6, toDisplayString(todayHours.value), 1)) : createCommentVNode("", true)
             ])) : createCommentVNode("", true)
           ])
         ]);
       };
     }
   });
-  const _style_0$1 = '\n.restaurant-header[data-v-97039e9a] {\n  background: var(--menoo-surface, #ffffff);\n  padding: var(--menoo-spacing-2, 16px);\n  border-radius: var(--menoo-radius-md, 8px);\n  box-shadow: var(--menoo-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.12));\n  margin-bottom: var(--menoo-spacing-2, 16px);\n}\n.restaurant-info[data-v-97039e9a] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  gap: var(--menoo-spacing-1, 8px);\n}\n.restaurant-name[data-v-97039e9a] {\n  font-size: var(--menoo-font-size-xl, 1.25rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  color: var(--menoo-text-primary, #212121);\n  margin: 0;\n}\n.restaurant-city[data-v-97039e9a] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 4px 0 0 0;\n}\n.restaurant-meta[data-v-97039e9a] {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  gap: 6px;\n}\n.restaurant-hours[data-v-97039e9a] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 0;\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  white-space: nowrap;\n}\n.restaurant-hours[data-v-97039e9a]::before {\n  content: "🕐";\n  font-size: 14px;\n}\n.restaurant-status[data-v-97039e9a] {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 4px 12px;\n  border-radius: var(--menoo-radius-lg, 12px);\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n}\n.status-open[data-v-97039e9a] {\n  background: #e8f5e9;\n  color: var(--menoo-success, #388e3c);\n}\n.status-closed[data-v-97039e9a] {\n  background: #ffebee;\n  color: var(--menoo-error, #d32f2f);\n}\n.status-dot[data-v-97039e9a] {\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: currentColor;\n}\n.menoo-link[data-v-97039e9a] {\n  display: inline-flex;\n  align-items: center;\n  gap: 4px;\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n  color: white;\n  text-decoration: none;\n  padding: 6px 12px;\n  margin-top: 6px;\n  margin-bottom: 4px;\n  border-radius: var(--menoo-radius-md, 8px);\n  background: var(--menoo-primary, #f0ac28);\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  white-space: nowrap;\n  border: none;\n  position: relative;\n  overflow: hidden;\n}\n.menoo-link[data-v-97039e9a]::after {\n  content: "";\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 0;\n  height: 0;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.5);\n  transform: translate(-50%, -50%);\n  transition: width 0.6s, height 0.6s;\n}\n.menoo-link[data-v-97039e9a]:active::after {\n  width: 300px;\n  height: 300px;\n}\n.menoo-link[data-v-97039e9a]:hover {\n  background: var(--menoo-primary-dark, #996d1a);\n  transform: translateY(-1px);\n  box-shadow: 0 2px 8px rgba(240, 172, 40, 0.3);\n}\n.menoo-link[data-v-97039e9a]:active {\n  transform: translateY(0);\n}\n';
-  const MenooRestaurant = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["styles", [_style_0$1]], ["__scopeId", "data-v-97039e9a"]]);
+  const _style_0$1 = '\n.restaurant-header[data-v-7bcc5162] {\n  background: var(--menoo-surface, #ffffff);\n  padding: var(--menoo-spacing-2, 16px);\n  border-radius: var(--menoo-radius-md, 8px);\n  box-shadow: var(--menoo-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.12));\n  margin-bottom: var(--menoo-spacing-2, 16px);\n}\n.restaurant-info[data-v-7bcc5162] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  gap: var(--menoo-spacing-1, 8px);\n}\n.restaurant-name[data-v-7bcc5162] {\n  font-size: var(--menoo-font-size-xl, 1.25rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  color: var(--menoo-text-primary, #212121);\n  margin: 0;\n}\n.restaurant-city[data-v-7bcc5162] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 4px 0 0 0;\n}\n.restaurant-meta[data-v-7bcc5162] {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  gap: 6px;\n}\n.restaurant-hours[data-v-7bcc5162] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 0;\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  white-space: nowrap;\n}\n.restaurant-hours[data-v-7bcc5162]::before {\n  content: "🕐";\n  font-size: 14px;\n}\n.restaurant-status[data-v-7bcc5162] {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 4px 12px;\n  border-radius: var(--menoo-radius-lg, 12px);\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n}\n.status-open[data-v-7bcc5162] {\n  background: #e8f5e9;\n  color: var(--menoo-success, #388e3c);\n}\n.status-closed[data-v-7bcc5162] {\n  background: #ffebee;\n  color: var(--menoo-error, #d32f2f);\n}\n.status-dot[data-v-7bcc5162] {\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: currentColor;\n}\n.menoo-link[data-v-7bcc5162] {\n  display: inline-flex;\n  align-items: center;\n  gap: 4px;\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n  color: white;\n  text-decoration: none;\n  padding: 6px 12px;\n  margin-top: 6px;\n  margin-bottom: 4px;\n  border-radius: var(--menoo-radius-md, 8px);\n  background: var(--menoo-primary, #f0ac28);\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  white-space: nowrap;\n  border: none;\n  position: relative;\n  overflow: hidden;\n}\n.menoo-link[data-v-7bcc5162]::after {\n  content: "";\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 0;\n  height: 0;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.5);\n  transform: translate(-50%, -50%);\n  transition: width 0.6s, height 0.6s;\n}\n.menoo-link[data-v-7bcc5162]:active::after {\n  width: 300px;\n  height: 300px;\n}\n.menoo-link[data-v-7bcc5162]:hover {\n  background: var(--menoo-primary-dark, #996d1a);\n  transform: translateY(-1px);\n  box-shadow: 0 2px 8px rgba(240, 172, 40, 0.3);\n}\n.menoo-link[data-v-7bcc5162]:active {\n  transform: translateY(0);\n}\n';
+  const MenooRestaurant = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["styles", [_style_0$1]], ["__scopeId", "data-v-7bcc5162"]]);
   const _hoisted_1 = { class: "menoo-widget-container" };
   const _hoisted_2 = { class: "menoo-widget-main" };
   const _hoisted_3 = { class: "cart-badge" };

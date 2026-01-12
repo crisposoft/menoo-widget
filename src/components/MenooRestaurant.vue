@@ -29,17 +29,9 @@
 import { computed } from "vue";
 import { useRestaurant } from "../composables";
 import { i18n } from "../services/i18n";
+import { getSlug } from "../utils/strings";
 
 const { restaurant } = useRestaurant();
-
-const slugify = (text: string): string => {
-  return text
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-};
 
 const isOpen = computed(() => restaurant.value?.status === "open");
 const statusClass = computed(() =>
@@ -54,7 +46,7 @@ const menooUrl = computed(() => {
 
   const lang = i18n.getLanguage();
   const cityRaw = restaurant.value.address?.city || "";
-  const city = cityRaw ? slugify(cityRaw) : "";
+  const city = cityRaw ? getSlug(cityRaw) : "";
   const slug = restaurant.value.slug || restaurant.value._id;
 
   // If no city, construct URL without city parameter

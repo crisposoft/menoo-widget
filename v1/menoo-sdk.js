@@ -94,7 +94,7 @@ const cart$2 = { "title": "Your cart", "empty": "Your cart is empty", "addToCart
 const menu$2 = { "search": "Search", "categories": "Categories", "noResults": "No items found" };
 const item$2 = { "addToCart": "Add to cart", "options": "Options", "required": "Required", "optional": "Optional", "notes": "Special notes", "notesPlaceholder": "Add a note to your order...", "quantity": "Quantity" };
 const dialog$2 = { "note": "Special requests", "notePlaceholder": "Add a note for this item (e.g., no onions)...", "addToCart": "Add to cart • {price}", "options": { "required": "Required", "optional": "Optional", "singleChoice": "Choose one", "multipleChoice": "Choose multiple" } };
-const restaurant$2 = { "open": "Open", "closed": "Closed", "today": "Today", "closed_today": "Closed today", "delivery": "Delivery", "pickup": "Pickup" };
+const restaurant$2 = { "open": "Open", "closed": "Closed", "today": "Today", "closed_today": "Closed today", "delivery": "Delivery", "pickup": "Pickup", "seeOnMenoo": "See on Menoo" };
 const errors$2 = { "fetchError": "Failed to load restaurant data" };
 const enTranslations = {
   cart: cart$2,
@@ -108,7 +108,7 @@ const cart$1 = { "title": "Coșul tău", "empty": "Coșul tău este gol", "addTo
 const menu$1 = { "search": "Caută", "categories": "Categorii", "noResults": "Nu s-au găsit produse" };
 const item$1 = { "addToCart": "Adaugă în coș", "options": "Opțiuni", "required": "Obligatoriu", "optional": "Opțional", "notes": "Mențiuni speciale", "notesPlaceholder": "Adaugă o mențiune la comandă...", "quantity": "Cantitate" };
 const dialog$1 = { "note": "Solicitări speciale", "notePlaceholder": "Adaugă o notă pentru acest produs (ex: fără ceapă)...", "addToCart": "Adaugă în coș • {price}", "options": { "required": "Obligatoriu", "optional": "Opțional", "singleChoice": "Alege unul", "multipleChoice": "Alege multiple" } };
-const restaurant$1 = { "open": "Deschis", "closed": "Închis", "today": "Astăzi", "closed_today": "Închis astăzi", "delivery": "Livrare", "pickup": "Ridicare personală" };
+const restaurant$1 = { "open": "Deschis", "closed": "Închis", "today": "Astăzi", "closed_today": "Închis astăzi", "delivery": "Livrare", "pickup": "Ridicare personală", "seeOnMenoo": "Vezi pe Menoo" };
 const errors$1 = { "fetchError": "Nu s-au putut încărca datele restaurantului" };
 const roTranslations = {
   cart: cart$1,
@@ -122,7 +122,7 @@ const cart = { "title": "Ваша корзина", "empty": "Ваша корзи
 const menu = { "search": "Поиск", "categories": "Категории", "noResults": "Товары не найдены" };
 const item = { "addToCart": "Добавить в корзину", "options": "Опции", "required": "Обязательно", "optional": "Необязательно", "notes": "Особые примечания", "notesPlaceholder": "Добавить примечание к заказу...", "quantity": "Количество" };
 const dialog = { "note": "Специальные запросы", "notePlaceholder": "Добавьте замечание для этого товара (например, без лука)...", "addToCart": "Добавить в корзину • {price}", "options": { "required": "Обязательно", "optional": "Необязательно", "singleChoice": "Выберите один", "multipleChoice": "Выберите несколько" } };
-const restaurant = { "open": "Открыто", "closed": "Закрыто", "today": "Сегодня", "closed_today": "Сегодня закрыто", "delivery": "Доставка", "pickup": "Самовывоз" };
+const restaurant = { "open": "Открыто", "closed": "Закрыто", "today": "Сегодня", "closed_today": "Сегодня закрыто", "delivery": "Доставка", "pickup": "Самовывоз", "seeOnMenoo": "Смотреть на Menoo" };
 const errors = { "fetchError": "Не удалось загрузить данные ресторана" };
 const ruTranslations = {
   cart,
@@ -8444,7 +8444,7 @@ const _hoisted_4$5 = {
 };
 const _hoisted_5$5 = { class: "cart-items" };
 const _hoisted_6$5 = { class: "item-details" };
-const _hoisted_7$4 = { class: "item-name" };
+const _hoisted_7$5 = { class: "item-name" };
 const _hoisted_8$3 = {
   key: 0,
   class: "item-options"
@@ -8547,7 +8547,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                         class: "cart-item"
                       }, [
                         createBaseVNode("div", _hoisted_6$5, [
-                          createBaseVNode("div", _hoisted_7$4, toDisplayString(cartItem.item.name), 1),
+                          createBaseVNode("div", _hoisted_7$5, toDisplayString(cartItem.item.name), 1),
                           getOptionsText(cartItem) ? (openBlock(), createElementBlock("div", _hoisted_8$3, toDisplayString(getOptionsText(cartItem)), 1)) : createCommentVNode("", true),
                           cartItem.note ? (openBlock(), createElementBlock("div", _hoisted_9$3, toDisplayString(cartItem.note), 1)) : createCommentVNode("", true),
                           createBaseVNode("div", _hoisted_10$3, toDisplayString(unref(formatPrice)(cartItem.price)), 1)
@@ -8939,7 +8939,7 @@ const _hoisted_3$5 = ["placeholder"];
 const _hoisted_4$4 = { class: "category-title" };
 const _hoisted_5$4 = { class: "category-scroll-container" };
 const _hoisted_6$4 = ["onClick"];
-const _hoisted_7$3 = { class: "category-count" };
+const _hoisted_7$4 = { class: "category-count" };
 const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "MenooCategoryNav",
   emits: ["categorySelected", "categorySearch"],
@@ -9053,7 +9053,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                     onClick: ($event) => selectCategory(category._id)
                   }, [
                     createTextVNode(toDisplayString(category.name) + " ", 1),
-                    createBaseVNode("span", _hoisted_7$3, toDisplayString(((_a = category.items) == null ? void 0 : _a.length) || 0), 1)
+                    createBaseVNode("span", _hoisted_7$4, toDisplayString(((_a = category.items) == null ? void 0 : _a.length) || 0), 1)
                   ], 10, _hoisted_6$4)
                 ]);
               }), 128))
@@ -9256,7 +9256,7 @@ const _hoisted_5$3 = {
   class: "option-optional"
 };
 const _hoisted_6$3 = { class: "option-subtitle" };
-const _hoisted_7$2 = {
+const _hoisted_7$3 = {
   key: 0,
   class: "option-choices"
 };
@@ -9358,7 +9358,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
               option.required ? (openBlock(), createElementBlock("span", _hoisted_4$3, toDisplayString(unref(t)("dialog.options.required")), 1)) : (openBlock(), createElementBlock("span", _hoisted_5$3, toDisplayString(unref(t)("dialog.options.optional")), 1))
             ]),
             createBaseVNode("div", _hoisted_6$3, toDisplayString(option.type === "single" ? unref(t)("dialog.options.singleChoice") : unref(t)("dialog.options.multipleChoice")), 1),
-            option.type === "single" ? (openBlock(), createElementBlock("div", _hoisted_7$2, [
+            option.type === "single" ? (openBlock(), createElementBlock("div", _hoisted_7$3, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(option.values, (choice) => {
                 return openBlock(), createElementBlock("label", {
                   key: choice._id,
@@ -9412,7 +9412,7 @@ const _hoisted_3$3 = {
 const _hoisted_4$2 = ["src", "alt"];
 const _hoisted_5$2 = { class: "dialog-body" };
 const _hoisted_6$2 = { class: "dialog-title" };
-const _hoisted_7$1 = {
+const _hoisted_7$2 = {
   key: 0,
   class: "dialog-description"
 };
@@ -9550,7 +9550,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                     ])) : createCommentVNode("", true),
                     createBaseVNode("div", _hoisted_5$2, [
                       createBaseVNode("h2", _hoisted_6$2, toDisplayString(__props.item.name), 1),
-                      __props.item.description ? (openBlock(), createElementBlock("p", _hoisted_7$1, toDisplayString(__props.item.description), 1)) : createCommentVNode("", true),
+                      __props.item.description ? (openBlock(), createElementBlock("p", _hoisted_7$2, toDisplayString(__props.item.description), 1)) : createCommentVNode("", true),
                       __props.item.options && __props.item.options.length > 0 ? (openBlock(), createBlock(MenooItemOptions, {
                         key: 1,
                         options: __props.item.options,
@@ -9612,7 +9612,7 @@ const _hoisted_3$2 = { class: "category-header" };
 const _hoisted_4$1 = { class: "items-grid" };
 const _hoisted_5$1 = ["onClick"];
 const _hoisted_6$1 = ["src", "alt"];
-const _hoisted_7 = { class: "item-content" };
+const _hoisted_7$1 = { class: "item-content" };
 const _hoisted_8 = { class: "item-name" };
 const _hoisted_9 = {
   key: 0,
@@ -9803,7 +9803,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                     alt: item2.name,
                     loading: "lazy"
                   }, null, 8, _hoisted_6$1)) : createCommentVNode("", true),
-                  createBaseVNode("div", _hoisted_7, [
+                  createBaseVNode("div", _hoisted_7$1, [
                     createBaseVNode("h3", _hoisted_8, toDisplayString(item2.name), 1),
                     item2.description ? (openBlock(), createElementBlock("p", _hoisted_9, toDisplayString(item2.description), 1)) : createCommentVNode("", true),
                     createBaseVNode("div", _hoisted_10, [
@@ -9835,15 +9835,16 @@ const MenooItemGrid = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["styles", [_sty
 const _hoisted_1$1 = { class: "restaurant-header" };
 const _hoisted_2$1 = { class: "restaurant-info" };
 const _hoisted_3$1 = { class: "restaurant-name" };
-const _hoisted_4 = {
-  key: 0,
+const _hoisted_4 = ["href"];
+const _hoisted_5 = {
+  key: 1,
   class: "restaurant-city"
 };
-const _hoisted_5 = {
+const _hoisted_6 = {
   key: 0,
   class: "restaurant-meta"
 };
-const _hoisted_6 = {
+const _hoisted_7 = {
   key: 0,
   class: "restaurant-hours"
 };
@@ -9861,6 +9862,14 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const statusText = computed(
       () => i18n.t(`restaurant.${isOpen.value ? "open" : "closed"}`)
     );
+    const menooUrl = computed(() => {
+      var _a;
+      if (!restaurant2.value) return "#";
+      const lang = i18n.getLanguage();
+      const city = ((_a = restaurant2.value.city) == null ? void 0 : _a.toLowerCase().replace(/\s+/g, "-")) || "";
+      const slug = restaurant2.value.slug || restaurant2.value._id;
+      return `https://menoo.ro/${lang}/${city}/${slug}`;
+    });
     const todayHours = computed(() => {
       var _a;
       if (!((_a = restaurant2.value) == null ? void 0 : _a.schedule)) return null;
@@ -9884,29 +9893,36 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       return `${i18n.t("restaurant.today")}: ${hours}`;
     });
     return (_ctx, _cache) => {
-      var _a, _b;
+      var _a, _b, _c;
       return openBlock(), createElementBlock("div", _hoisted_1$1, [
         createBaseVNode("div", _hoisted_2$1, [
           createBaseVNode("div", null, [
             createBaseVNode("h1", _hoisted_3$1, toDisplayString(((_a = unref(restaurant2)) == null ? void 0 : _a.name) || "Loading..."), 1),
-            ((_b = unref(restaurant2)) == null ? void 0 : _b.city) ? (openBlock(), createElementBlock("p", _hoisted_4, toDisplayString(unref(restaurant2).city), 1)) : createCommentVNode("", true)
+            ((_b = unref(restaurant2)) == null ? void 0 : _b._id) ? (openBlock(), createElementBlock("a", {
+              key: 0,
+              href: menooUrl.value,
+              target: "_blank",
+              rel: "noopener noreferrer",
+              class: "menoo-link"
+            }, toDisplayString(unref(i18n).t("restaurant.seeOnMenoo")) + " → ", 9, _hoisted_4)) : createCommentVNode("", true),
+            ((_c = unref(restaurant2)) == null ? void 0 : _c.city) ? (openBlock(), createElementBlock("p", _hoisted_5, toDisplayString(unref(restaurant2).city), 1)) : createCommentVNode("", true)
           ]),
-          unref(restaurant2) ? (openBlock(), createElementBlock("div", _hoisted_5, [
+          unref(restaurant2) ? (openBlock(), createElementBlock("div", _hoisted_6, [
             createBaseVNode("div", {
               class: normalizeClass(["restaurant-status", statusClass.value])
             }, [
               _cache[0] || (_cache[0] = createBaseVNode("span", { class: "status-dot" }, null, -1)),
               createBaseVNode("span", null, toDisplayString(statusText.value), 1)
             ], 2),
-            todayHours.value ? (openBlock(), createElementBlock("p", _hoisted_6, toDisplayString(todayHours.value), 1)) : createCommentVNode("", true)
+            todayHours.value ? (openBlock(), createElementBlock("p", _hoisted_7, toDisplayString(todayHours.value), 1)) : createCommentVNode("", true)
           ])) : createCommentVNode("", true)
         ])
       ]);
     };
   }
 });
-const _style_0$1 = '\n.restaurant-header[data-v-09b3114e] {\n  background: var(--menoo-surface, #ffffff);\n  padding: var(--menoo-spacing-2, 16px);\n  border-radius: var(--menoo-radius-md, 8px);\n  box-shadow: var(--menoo-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.12));\n  margin-bottom: var(--menoo-spacing-2, 16px);\n}\n.restaurant-info[data-v-09b3114e] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  gap: var(--menoo-spacing-1, 8px);\n}\n.restaurant-name[data-v-09b3114e] {\n  font-size: var(--menoo-font-size-xl, 1.25rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  color: var(--menoo-text-primary, #212121);\n  margin: 0;\n}\n.restaurant-city[data-v-09b3114e] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 4px 0 0 0;\n}\n.restaurant-meta[data-v-09b3114e] {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  gap: 6px;\n}\n.restaurant-hours[data-v-09b3114e] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 0;\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  white-space: nowrap;\n}\n.restaurant-hours[data-v-09b3114e]::before {\n  content: "🕐";\n  font-size: 14px;\n}\n.restaurant-status[data-v-09b3114e] {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 4px 12px;\n  border-radius: var(--menoo-radius-lg, 12px);\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n}\n.status-open[data-v-09b3114e] {\n  background: #e8f5e9;\n  color: var(--menoo-success, #388e3c);\n}\n.status-closed[data-v-09b3114e] {\n  background: #ffebee;\n  color: var(--menoo-error, #d32f2f);\n}\n.status-dot[data-v-09b3114e] {\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: currentColor;\n}\n';
-const MenooRestaurant = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["styles", [_style_0$1]], ["__scopeId", "data-v-09b3114e"]]);
+const _style_0$1 = '\n.restaurant-header[data-v-1b70e8b4] {\n  background: var(--menoo-surface, #ffffff);\n  padding: var(--menoo-spacing-2, 16px);\n  border-radius: var(--menoo-radius-md, 8px);\n  box-shadow: var(--menoo-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.12));\n  margin-bottom: var(--menoo-spacing-2, 16px);\n}\n.restaurant-info[data-v-1b70e8b4] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  gap: var(--menoo-spacing-1, 8px);\n}\n.restaurant-name[data-v-1b70e8b4] {\n  font-size: var(--menoo-font-size-xl, 1.25rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  color: var(--menoo-text-primary, #212121);\n  margin: 0;\n}\n.restaurant-city[data-v-1b70e8b4] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 4px 0 0 0;\n}\n.restaurant-meta[data-v-1b70e8b4] {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  gap: 6px;\n}\n.restaurant-hours[data-v-1b70e8b4] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 0;\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  white-space: nowrap;\n}\n.restaurant-hours[data-v-1b70e8b4]::before {\n  content: "🕐";\n  font-size: 14px;\n}\n.restaurant-status[data-v-1b70e8b4] {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 4px 12px;\n  border-radius: var(--menoo-radius-lg, 12px);\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n}\n.status-open[data-v-1b70e8b4] {\n  background: #e8f5e9;\n  color: var(--menoo-success, #388e3c);\n}\n.status-closed[data-v-1b70e8b4] {\n  background: #ffebee;\n  color: var(--menoo-error, #d32f2f);\n}\n.status-dot[data-v-1b70e8b4] {\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: currentColor;\n}\n.menoo-link[data-v-1b70e8b4] {\n  display: inline-flex;\n  align-items: center;\n  gap: 4px;\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n  color: white;\n  text-decoration: none;\n  padding: 6px 12px;\n  margin-top: 6px;\n  margin-bottom: 4px;\n  border-radius: var(--menoo-radius-md, 8px);\n  background: var(--menoo-primary, #f0ac28);\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  white-space: nowrap;\n  border: none;\n  position: relative;\n  overflow: hidden;\n}\n.menoo-link[data-v-1b70e8b4]::after {\n  content: "";\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 0;\n  height: 0;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.5);\n  transform: translate(-50%, -50%);\n  transition: width 0.6s, height 0.6s;\n}\n.menoo-link[data-v-1b70e8b4]:active::after {\n  width: 300px;\n  height: 300px;\n}\n.menoo-link[data-v-1b70e8b4]:hover {\n  background: var(--menoo-primary-dark, #996d1a);\n  transform: translateY(-1px);\n  box-shadow: 0 2px 8px rgba(240, 172, 40, 0.3);\n}\n.menoo-link[data-v-1b70e8b4]:active {\n  transform: translateY(0);\n}\n';
+const MenooRestaurant = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["styles", [_style_0$1]], ["__scopeId", "data-v-1b70e8b4"]]);
 const _hoisted_1 = { class: "menoo-widget-container" };
 const _hoisted_2 = { class: "menoo-widget-main" };
 const _hoisted_3 = { class: "cart-badge" };

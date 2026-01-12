@@ -48,6 +48,7 @@ export declare function useCart(): {
 export declare function useRestaurant(): {
     restaurant: import('vue').ComputedRef<{
         _id: string;
+        slug?: string | undefined;
         name: string;
         city: string;
         address?: string | undefined;

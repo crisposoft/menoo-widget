@@ -43,7 +43,8 @@ declare const _default: {
     "today": "Astăzi",
     "closed_today": "Închis astăzi",
     "delivery": "Livrare",
-    "pickup": "Ridicare personală"
+    "pickup": "Ridicare personală",
+    "seeOnMenoo": "Vezi pe Menoo"
   },
   "errors": {
     "fetchError": "Nu s-au putut încărca datele restaurantului"

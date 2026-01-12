@@ -43,7 +43,8 @@ declare const _default: {
     "today": "Сегодня",
     "closed_today": "Сегодня закрыто",
     "delivery": "Доставка",
-    "pickup": "Самовывоз"
+    "pickup": "Самовывоз",
+    "seeOnMenoo": "Смотреть на Menoo"
   },
   "errors": {
     "fetchError": "Не удалось загрузить данные ресторана"

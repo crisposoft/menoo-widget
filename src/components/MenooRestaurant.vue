@@ -35,10 +35,10 @@ const { restaurant } = useRestaurant();
 
 const isOpen = computed(() => restaurant.value?.status === "open");
 const statusClass = computed(() =>
-  isOpen.value ? "status-open" : "status-closed"
+  isOpen.value ? "status-open" : "status-closed",
 );
 const statusText = computed(() =>
-  i18n.t(`restaurant.${isOpen.value ? "open" : "closed"}`)
+  i18n.t(`restaurant.${isOpen.value ? "open" : "closed"}`),
 );
 
 const menooUrl = computed(() => {
@@ -79,7 +79,7 @@ const todayHours = computed(() => {
 
   const hours = schedule
     .map(
-      (slot: { open: string; close: string }) => `${slot.open} - ${slot.close}`
+      (slot: { open: string; close: string }) => `${slot.open} - ${slot.close}`,
     )
     .join(", ");
 

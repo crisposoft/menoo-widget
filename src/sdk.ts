@@ -32,6 +32,11 @@ export class MenooSDK {
 
     this.config = config;
 
+    // Override API URL if provided
+    if (config.apiUrl) {
+      apiClient.setBaseUrl(config.apiUrl);
+    }
+
     // Resolve container
     if (typeof config.container === "string") {
       this.container = document.querySelector(config.container);
@@ -58,7 +63,7 @@ export class MenooSDK {
       const data = await apiClient.fetchRestaurant(
         config.restaurantId,
         language,
-        true
+        true,
       );
 
       // Initialize stores
@@ -84,7 +89,7 @@ export class MenooSDK {
       window.dispatchEvent(
         new CustomEvent("menoo:ready", {
           detail: { restaurantId: config.restaurantId },
-        })
+        }),
       );
     } catch (error) {
       console.error("Failed to initialize Menoo Widget:", error);
@@ -92,7 +97,7 @@ export class MenooSDK {
       window.dispatchEvent(
         new CustomEvent("menoo:error", {
           detail: { error, phase: "initialization" },
-        })
+        }),
       );
       throw error;
     }
@@ -187,8 +192,11 @@ export class MenooSDK {
     // Encode cart to base64
     const encodedCart = btoa(encodeURIComponent(JSON.stringify(cartData)));
 
+    // Determine base URL: use config override, or environment-based default
+    const baseUrl = this.config?.webappUrl || "https://menoo.ro";
+
     // Redirect with cart data in URL
-    window.location.href = `https://menoo.ro/${language}/embedded/widget/${restaurantId}?cart=${encodedCart}`;
+    window.location.href = `${baseUrl}/${language}/embedded/widget/${restaurantId}?cart=${encodedCart}`;
   }
 
   /**

@@ -25,7 +25,7 @@ export class ApiClient {
     ];
     const currentDay = dayNames[now.getDay()];
     const currentTime = `${String(now.getHours()).padStart(2, "0")}:${String(
-      now.getMinutes()
+      now.getMinutes(),
     ).padStart(2, "0")}`;
 
     const todaySchedule = apiSchedule.days[currentDay];
@@ -73,7 +73,7 @@ export class ApiClient {
 
   private async request<T>(
     endpoint: string,
-    options: RequestInit = {}
+    options: RequestInit = {},
   ): Promise<T> {
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
@@ -98,7 +98,7 @@ export class ApiClient {
   async fetchRestaurant(
     restaurantId: string,
     language: string = "ro",
-    publicApi: boolean = true
+    publicApi: boolean = true,
   ): Promise<RestaurantResponse> {
     const endpoint = publicApi
       ? `/v1/public/restaurants/${restaurantId}?lang=${language}`
@@ -129,6 +129,10 @@ export class ApiClient {
       isPremium:
         !!response.restaurant.type && response.restaurant.type !== "standard",
     };
+  }
+
+  setBaseUrl(url: string): void {
+    this.baseUrl = url;
   }
 }
 

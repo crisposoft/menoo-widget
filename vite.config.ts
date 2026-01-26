@@ -41,7 +41,7 @@ export default defineConfig({
     minify: false,
   },
   server: {
-    port: 3000,
+    port: 5173,
     open: "/examples/index.html",
   },
   resolve: {

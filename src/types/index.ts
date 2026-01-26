@@ -104,6 +104,8 @@ export interface WidgetConfig {
   container?: string | HTMLElement;
   language?: "ro" | "en" | "ru";
   stickyOffset?: number; // Offset from top for sticky elements in pixels (default: 0)
+  webappUrl?: string; // Override the webapp URL (for dev/testing, e.g., "http://localhost:8080")
+  apiUrl?: string; // Override the API URL (for dev/testing, e.g., "http://localhost:3000")
 }
 
 // API Response types

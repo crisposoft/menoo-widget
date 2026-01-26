@@ -92,6 +92,8 @@ export interface WidgetConfig {
     container?: string | HTMLElement;
     language?: "ro" | "en" | "ru";
     stickyOffset?: number;
+    webappUrl?: string;
+    apiUrl?: string;
 }
 export interface RestaurantResponse {
     data: Restaurant;

@@ -6,5 +6,6 @@ export declare class ApiClient {
     private transformSchedule;
     private request;
     fetchRestaurant(restaurantId: string, language?: string, publicApi?: boolean): Promise<RestaurantResponse>;
+    setBaseUrl(url: string): void;
 }
 export declare const apiClient: ApiClient;

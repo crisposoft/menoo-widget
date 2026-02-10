@@ -10,7 +10,12 @@ declare const _default: {
     "deliveryFreeOver": "Free delivery for orders over {amount}",
     "total": "Total",
     "checkout": "Continue to Checkout",
-    "free": "Free"
+    "free": "Free",
+    "clear": "Clear cart",
+    "clearConfirmTitle": "Clear cart?",
+    "clearConfirmMessage": "All items will be removed from your cart.",
+    "clearConfirmYes": "Yes, clear",
+    "clearConfirmNo": "Cancel"
   },
   "menu": {
     "search": "Search",

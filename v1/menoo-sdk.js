@@ -93,7 +93,7 @@ class ApiClient {
   }
 }
 const apiClient = new ApiClient();
-const cart$2 = { "title": "Your cart", "empty": "Your cart is empty", "addToCart": "Add to cart", "add": "Add", "remove": "Remove", "subtotal": "Products subtotal", "deliveryFee": "Delivery fee", "deliveryFreeOver": "Free delivery for orders over {amount}", "total": "Total", "checkout": "Continue to Checkout", "free": "Free" };
+const cart$2 = { "title": "Your cart", "empty": "Your cart is empty", "addToCart": "Add to cart", "add": "Add", "remove": "Remove", "subtotal": "Products subtotal", "deliveryFee": "Delivery fee", "deliveryFreeOver": "Free delivery for orders over {amount}", "total": "Total", "checkout": "Continue to Checkout", "free": "Free", "clear": "Clear cart", "clearConfirmTitle": "Clear cart?", "clearConfirmMessage": "All items will be removed from your cart.", "clearConfirmYes": "Yes, clear", "clearConfirmNo": "Cancel" };
 const menu$2 = { "search": "Search", "categories": "Categories", "noResults": "No items found" };
 const item$2 = { "addToCart": "Add to cart", "options": "Options", "required": "Required", "optional": "Optional", "notes": "Special notes", "notesPlaceholder": "Add a note to your order...", "quantity": "Quantity" };
 const dialog$2 = { "note": "Special requests", "notePlaceholder": "Add a note for this item (e.g., no onions)...", "addToCart": "Add to cart • {price}", "options": { "required": "Required", "optional": "Optional", "singleChoice": "Choose one", "multipleChoice": "Choose multiple" } };
@@ -107,7 +107,7 @@ const enTranslations = {
   restaurant: restaurant$2,
   errors: errors$2
 };
-const cart$1 = { "title": "Coșul tău", "empty": "Coșul tău este gol", "addToCart": "Adaugă în coș", "add": "Adaugă", "remove": "Elimină", "subtotal": "Subtotal produse", "deliveryFee": "Cost livrare", "deliveryFreeOver": "Livrare gratuită pentru comenzi peste {amount}", "total": "Total", "checkout": "Continuă la finalizare", "free": "Gratuit" };
+const cart$1 = { "title": "Coșul tău", "empty": "Coșul tău este gol", "addToCart": "Adaugă în coș", "add": "Adaugă", "remove": "Elimină", "subtotal": "Subtotal produse", "deliveryFee": "Cost livrare", "deliveryFreeOver": "Livrare gratuită pentru comenzi peste {amount}", "total": "Total", "checkout": "Continuă la finalizare", "free": "Gratuit", "clear": "Golește coșul", "clearConfirmTitle": "Golești coșul?", "clearConfirmMessage": "Toate produsele vor fi eliminate din coș.", "clearConfirmYes": "Da, golește", "clearConfirmNo": "Anulează" };
 const menu$1 = { "search": "Caută", "categories": "Categorii", "noResults": "Nu s-au găsit produse" };
 const item$1 = { "addToCart": "Adaugă în coș", "options": "Opțiuni", "required": "Obligatoriu", "optional": "Opțional", "notes": "Mențiuni speciale", "notesPlaceholder": "Adaugă o mențiune la comandă...", "quantity": "Cantitate" };
 const dialog$1 = { "note": "Solicitări speciale", "notePlaceholder": "Adaugă o notă pentru acest produs (ex: fără ceapă)...", "addToCart": "Adaugă în coș • {price}", "options": { "required": "Obligatoriu", "optional": "Opțional", "singleChoice": "Alege unul", "multipleChoice": "Alege multiple" } };
@@ -121,7 +121,7 @@ const roTranslations = {
   restaurant: restaurant$1,
   errors: errors$1
 };
-const cart = { "title": "Ваша корзина", "empty": "Ваша корзина пуста", "addToCart": "Добавить в корзину", "add": "Добавить", "remove": "Удалить", "subtotal": "Промежуточный итог", "deliveryFee": "Стоимость доставки", "deliveryFreeOver": "Бесплатная доставка при заказе от {amount}", "total": "Итого", "checkout": "Перейти к оформлению", "free": "Бесплатно" };
+const cart = { "title": "Ваша корзина", "empty": "Ваша корзина пуста", "addToCart": "Добавить в корзину", "add": "Добавить", "remove": "Удалить", "subtotal": "Промежуточный итог", "deliveryFee": "Стоимость доставки", "deliveryFreeOver": "Бесплатная доставка при заказе от {amount}", "total": "Итого", "checkout": "Перейти к оформлению", "free": "Бесплатно", "clear": "Очистить корзину", "clearConfirmTitle": "Очистить корзину?", "clearConfirmMessage": "Все товары будут удалены из корзины.", "clearConfirmYes": "Да, очистить", "clearConfirmNo": "Отмена" };
 const menu = { "search": "Поиск", "categories": "Категории", "noResults": "Товары не найдены" };
 const item = { "addToCart": "Добавить в корзину", "options": "Опции", "required": "Обязательно", "optional": "Необязательно", "notes": "Особые примечания", "notesPlaceholder": "Добавить примечание к заказу...", "quantity": "Количество" };
 const dialog = { "note": "Специальные запросы", "notePlaceholder": "Добавьте замечание для этого товара (например, без лука)...", "addToCart": "Добавить в корзину • {price}", "options": { "required": "Обязательно", "optional": "Необязательно", "singleChoice": "Выберите один", "multipleChoice": "Выберите несколько" } };
@@ -8435,7 +8435,7 @@ function useFormatPrice() {
     formatPrice
   };
 }
-const _hoisted_1$6 = { class: "cart-container" };
+const _hoisted_1$6 = { class: "cart-header-row" };
 const _hoisted_2$6 = { class: "cart-header" };
 const _hoisted_3$6 = {
   key: "empty",
@@ -8465,15 +8465,24 @@ const _hoisted_15$1 = { class: "summary-row" };
 const _hoisted_16 = { class: "summary-label" };
 const _hoisted_17 = { class: "summary-value" };
 const _hoisted_18 = ["disabled"];
+const _hoisted_19 = {
+  key: 0,
+  class: "clear-confirm-dialog"
+};
+const _hoisted_20 = { class: "confirm-title" };
+const _hoisted_21 = { class: "confirm-message" };
+const _hoisted_22 = { class: "confirm-actions" };
 const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "MenooCart",
   emits: ["checkoutClicked"],
   setup(__props, { emit: __emit }) {
     const emit2 = __emit;
-    const { cart: cart2, updateCartItemQuantity } = useCart();
+    const { cart: cart2, updateCartItemQuantity, clearCart } = useCart();
     const { formatPrice } = useFormatPrice();
     const restaurantStore = useRestaurantStore();
     const animatingItems = ref(/* @__PURE__ */ new Set());
+    const showClearConfirm = ref(false);
+    const isModalElevated = ref(false);
     const isRestaurantOpen = computed(
       () => {
         var _a;
@@ -8528,13 +8537,61 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
         }
       }
     };
+    const handleClearCart = () => {
+      clearCart();
+      showClearConfirm.value = false;
+    };
     const handleCheckout = () => {
       emit2("checkoutClicked");
     };
     const t = (key, replacements) => i18n.t(key, replacements);
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$6, [
-        createBaseVNode("h2", _hoisted_2$6, toDisplayString(t("cart.title")), 1),
+      return openBlock(), createElementBlock("div", {
+        class: normalizeClass(["cart-container", { "cart-modal-open": isModalElevated.value }])
+      }, [
+        createBaseVNode("div", _hoisted_1$6, [
+          createBaseVNode("h2", _hoisted_2$6, toDisplayString(t("cart.title")), 1),
+          createVNode(Transition, { name: "clear-btn" }, {
+            default: withCtx(() => [
+              unref(cart2).items.length > 0 ? (openBlock(), createElementBlock("button", {
+                key: 0,
+                class: "clear-cart-btn",
+                onClick: _cache[0] || (_cache[0] = ($event) => {
+                  showClearConfirm.value = true;
+                  isModalElevated.value = true;
+                })
+              }, [
+                _cache[4] || (_cache[4] = createBaseVNode("svg", {
+                  width: "14",
+                  height: "14",
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
+                  "stroke-width": "2",
+                  "stroke-linecap": "round",
+                  "stroke-linejoin": "round"
+                }, [
+                  createBaseVNode("polyline", { points: "3 6 5 6 21 6" }),
+                  createBaseVNode("path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" }),
+                  createBaseVNode("line", {
+                    x1: "10",
+                    y1: "11",
+                    x2: "10",
+                    y2: "17"
+                  }),
+                  createBaseVNode("line", {
+                    x1: "14",
+                    y1: "11",
+                    x2: "14",
+                    y2: "17"
+                  })
+                ], -1)),
+                createTextVNode(" " + toDisplayString(t("cart.clear")), 1)
+              ])) : createCommentVNode("", true)
+            ]),
+            _: 1
+          })
+        ]),
         createVNode(Transition, {
           name: "cart-transition",
           mode: "out-in"
@@ -8588,12 +8645,48 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
             ]))
           ]),
           _: 1
+        }),
+        createVNode(Transition, {
+          name: "confirm-fade",
+          onAfterLeave: _cache[3] || (_cache[3] = ($event) => isModalElevated.value = false)
+        }, {
+          default: withCtx(() => [
+            showClearConfirm.value ? (openBlock(), createElementBlock("div", {
+              key: 0,
+              class: "clear-confirm-overlay",
+              onClick: _cache[2] || (_cache[2] = withModifiers(($event) => showClearConfirm.value = false, ["self"]))
+            }, [
+              createVNode(Transition, {
+                name: "confirm-slide",
+                appear: ""
+              }, {
+                default: withCtx(() => [
+                  showClearConfirm.value ? (openBlock(), createElementBlock("div", _hoisted_19, [
+                    createBaseVNode("h3", _hoisted_20, toDisplayString(t("cart.clearConfirmTitle")), 1),
+                    createBaseVNode("p", _hoisted_21, toDisplayString(t("cart.clearConfirmMessage")), 1),
+                    createBaseVNode("div", _hoisted_22, [
+                      createBaseVNode("button", {
+                        class: "confirm-btn confirm-btn-cancel",
+                        onClick: _cache[1] || (_cache[1] = ($event) => showClearConfirm.value = false)
+                      }, toDisplayString(t("cart.clearConfirmNo")), 1),
+                      createBaseVNode("button", {
+                        class: "confirm-btn confirm-btn-confirm",
+                        onClick: handleClearCart
+                      }, toDisplayString(t("cart.clearConfirmYes")), 1)
+                    ])
+                  ])) : createCommentVNode("", true)
+                ]),
+                _: 1
+              })
+            ])) : createCommentVNode("", true)
+          ]),
+          _: 1
         })
-      ]);
+      ], 2);
     };
   }
 });
-const _style_0$6 = "\n.cart-container[data-v-8f6fd6aa] {\n  background: var(--menoo-surface, #ffffff);\n  border-radius: var(--menoo-radius-md, 8px);\n  box-shadow: var(--menoo-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.12));\n  padding: var(--menoo-spacing-2, 16px);\n  position: sticky;\n  top: var(--menoo-cart-top, 0);\n  max-height: calc(100vh - var(--menoo-cart-top, 0) - 32px);\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n}\n.cart-header[data-v-8f6fd6aa] {\n  font-size: var(--menoo-font-size-xl, 1.25rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  margin-bottom: var(--menoo-spacing-2, 16px);\n  padding-bottom: var(--menoo-spacing-1, 8px);\n  border-bottom: 2px solid var(--menoo-border, #e0e0e0);\n  margin-top: 0;\n}\n.cart-empty[data-v-8f6fd6aa] {\n  text-align: center;\n  padding: var(--menoo-spacing-4, 32px) var(--menoo-spacing-2, 16px);\n  color: var(--menoo-text-secondary, #757575);\n}\n.cart-transition-enter-active[data-v-8f6fd6aa],\n.cart-transition-leave-active[data-v-8f6fd6aa] {\n  transition: all 0.3s ease;\n}\n.cart-transition-enter-from[data-v-8f6fd6aa],\n.cart-transition-leave-to[data-v-8f6fd6aa] {\n  opacity: 0;\n  transform: scale(0.95);\n}\n.cart-full[data-v-8f6fd6aa] {\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n  min-height: 0;\n}\n.cart-items[data-v-8f6fd6aa] {\n  flex: 1;\n  overflow-y: auto;\n  overflow-x: hidden;\n  margin-bottom: var(--menoo-spacing-2, 16px);\n}\n\n/* Cart item transitions */\n.cart-item-move[data-v-8f6fd6aa] {\n  transition: transform 0.2s ease;\n}\n.cart-item-enter-active[data-v-8f6fd6aa] {\n  transition: all 0.2s ease;\n}\n.cart-item-leave-active[data-v-8f6fd6aa] {\n  transition: all 0.2s ease;\n  position: absolute;\n  width: calc(100% - var(--menoo-spacing-2, 16px) * 2);\n}\n.cart-item-enter-from[data-v-8f6fd6aa] {\n  opacity: 0;\n  transform: scale(0.8);\n}\n.cart-item-leave-to[data-v-8f6fd6aa] {\n  opacity: 0;\n  transform: scale(0.8);\n}\n.cart-item[data-v-8f6fd6aa] {\n  display: flex;\n  gap: var(--menoo-spacing-2, 16px);\n  padding: var(--menoo-spacing-2, 16px);\n  border-bottom: 1px solid var(--menoo-border, #e0e0e0);\n  background: var(--menoo-surface, #ffffff);\n}\n.cart-item[data-v-8f6fd6aa]:last-child {\n  border-bottom: none;\n}\n.item-details[data-v-8f6fd6aa] {\n  flex: 1;\n  min-width: 0;\n}\n.item-name[data-v-8f6fd6aa] {\n  font-weight: var(--menoo-font-weight-medium, 500);\n  margin-bottom: 4px;\n}\n.item-options[data-v-8f6fd6aa] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin-bottom: 4px;\n}\n.item-note[data-v-8f6fd6aa] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  font-style: italic;\n}\n.item-price[data-v-8f6fd6aa] {\n  font-weight: var(--menoo-font-weight-bold, 700);\n  color: var(--menoo-primary, #f0ac28);\n  margin-top: 4px;\n}\n.item-quantity[data-v-8f6fd6aa] {\n  display: flex;\n  align-items: center;\n  gap: var(--menoo-spacing-1, 8px);\n}\n.qty-btn[data-v-8f6fd6aa] {\n  width: 28px;\n  height: 28px;\n  border: 1px solid var(--menoo-border, #e0e0e0);\n  border-radius: var(--menoo-radius-sm, 4px);\n  background: white;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  transition: all var(--menoo-transition-fast, 150ms);\n  font-size: 16px;\n  padding: 0;\n}\n.qty-btn[data-v-8f6fd6aa]:hover {\n  background: var(--menoo-hover, #f5f5f5);\n  transform: scale(1.1);\n}\n.qty-btn[data-v-8f6fd6aa]:active {\n  transform: scale(0.95);\n}\n.qty-value[data-v-8f6fd6aa] {\n  min-width: 24px;\n  text-align: center;\n  font-weight: var(--menoo-font-weight-medium, 500);\n  transition: all 0.3s ease;\n}\n.qty-value.qty-animate[data-v-8f6fd6aa] {\n  animation: qtyAnimation-8f6fd6aa 0.3s ease;\n}\n@keyframes qtyAnimation-8f6fd6aa {\n0% {\n    transform: scale(1);\n    color: inherit;\n}\n50% {\n    transform: scale(1.3);\n    color: var(--menoo-primary, #f0ac28);\n    font-weight: var(--menoo-font-weight-bold, 700);\n}\n100% {\n    transform: scale(1);\n    color: inherit;\n}\n}\n.cart-summary[data-v-8f6fd6aa] {\n  border-top: 2px solid var(--menoo-border, #e0e0e0);\n  padding-top: var(--menoo-spacing-2, 16px);\n}\n.summary-row[data-v-8f6fd6aa] {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: var(--menoo-spacing-1, 8px);\n  font-size: var(--menoo-font-size-md, 1rem);\n}\n.summary-label[data-v-8f6fd6aa] {\n  color: var(--menoo-text-secondary, #757575);\n}\n.summary-value[data-v-8f6fd6aa] {\n  font-weight: var(--menoo-font-weight-medium, 500);\n}\n.summary-total[data-v-8f6fd6aa] {\n  font-size: var(--menoo-font-size-lg, 1.125rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  margin-top: var(--menoo-spacing-1, 8px);\n  padding-top: var(--menoo-spacing-1, 8px);\n  border-top: 1px solid var(--menoo-border, #e0e0e0);\n}\n.summary-total .summary-value[data-v-8f6fd6aa] {\n  color: var(--menoo-primary, #f0ac28);\n}\n.checkout-btn[data-v-8f6fd6aa] {\n  width: 100%;\n  padding: var(--menoo-spacing-2, 16px);\n  margin-top: var(--menoo-spacing-2, 16px);\n  background: var(--menoo-primary, #f0ac28);\n  color: white;\n  border: none;\n  border-radius: var(--menoo-radius-md, 8px);\n  font-size: var(--menoo-font-size-md, 1rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  cursor: pointer;\n  transition: all 0.3s ease;\n}\n.checkout-btn[data-v-8f6fd6aa]:hover:not(:disabled) {\n  background: var(--menoo-primary-dark, #996d1a);\n  transform: translateY(-2px);\n  box-shadow: 0 4px 12px rgba(240, 172, 40, 0.4);\n}\n.checkout-btn[data-v-8f6fd6aa]:active:not(:disabled) {\n  transform: translateY(0);\n  box-shadow: 0 2px 4px rgba(240, 172, 40, 0.3);\n}\n.checkout-btn[data-v-8f6fd6aa]:disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n  background: var(--menoo-text-secondary, #757575);\n}\n.delivery-hint[data-v-8f6fd6aa] {\n  font-size: var(--menoo-font-size-xs, 0.75rem);\n  color: var(--menoo-success, #388e3c);\n  margin-top: 4px;\n}\n@media (max-width: 768px) {\n.cart-container[data-v-8f6fd6aa] {\n    position: static;\n    max-height: none;\n}\n}\n";
+const _style_0$6 = "\n.cart-container[data-v-036d8ab8] {\n  background: var(--menoo-surface, #ffffff);\n  border-radius: var(--menoo-radius-md, 8px);\n  box-shadow: var(--menoo-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.12));\n  padding: var(--menoo-spacing-2, 16px);\n  position: sticky;\n  top: var(--menoo-cart-top, 0);\n  max-height: calc(100vh - var(--menoo-cart-top, 0) - 32px);\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n}\n.cart-container.cart-modal-open[data-v-036d8ab8] {\n  z-index: var(--menoo-z-modal, 1050);\n}\n.cart-header-row[data-v-036d8ab8] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: var(--menoo-spacing-2, 16px);\n  padding-bottom: var(--menoo-spacing-1, 8px);\n  border-bottom: 2px solid var(--menoo-border, #e0e0e0);\n}\n.cart-header[data-v-036d8ab8] {\n  font-size: var(--menoo-font-size-xl, 1.25rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  margin: 0;\n}\n.clear-cart-btn[data-v-036d8ab8] {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 4px 12px;\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n  color: var(--menoo-primary, #f0ac28);\n  background: transparent;\n  border: 1px solid var(--menoo-primary, #f0ac28);\n  border-radius: var(--menoo-radius-sm, 4px);\n  cursor: pointer;\n  transition: all 0.2s ease;\n  white-space: nowrap;\n}\n.clear-cart-btn[data-v-036d8ab8]:hover {\n  background: var(--menoo-primary-light, #fdf5e8);\n  transform: translateY(-1px);\n  box-shadow: 0 2px 8px rgba(240, 172, 40, 0.25);\n}\n.clear-cart-btn[data-v-036d8ab8]:active {\n  transform: translateY(0);\n}\n.clear-btn-enter-active[data-v-036d8ab8],\n.clear-btn-leave-active[data-v-036d8ab8] {\n  transition: all 0.25s ease;\n}\n.clear-btn-enter-from[data-v-036d8ab8],\n.clear-btn-leave-to[data-v-036d8ab8] {\n  opacity: 0;\n  transform: scale(0.8);\n}\n.cart-empty[data-v-036d8ab8] {\n  text-align: center;\n  padding: var(--menoo-spacing-4, 32px) var(--menoo-spacing-2, 16px);\n  color: var(--menoo-text-secondary, #757575);\n}\n.cart-transition-enter-active[data-v-036d8ab8],\n.cart-transition-leave-active[data-v-036d8ab8] {\n  transition: all 0.3s ease;\n}\n.cart-transition-enter-from[data-v-036d8ab8],\n.cart-transition-leave-to[data-v-036d8ab8] {\n  opacity: 0;\n  transform: scale(0.95);\n}\n.cart-full[data-v-036d8ab8] {\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n  min-height: 0;\n}\n.cart-items[data-v-036d8ab8] {\n  flex: 1;\n  overflow-y: auto;\n  overflow-x: hidden;\n  margin-bottom: var(--menoo-spacing-2, 16px);\n}\n\n/* Cart item transitions */\n.cart-item-move[data-v-036d8ab8] {\n  transition: transform 0.2s ease;\n}\n.cart-item-enter-active[data-v-036d8ab8] {\n  transition: all 0.2s ease;\n}\n.cart-item-leave-active[data-v-036d8ab8] {\n  transition: all 0.2s ease;\n  position: absolute;\n  width: calc(100% - var(--menoo-spacing-2, 16px) * 2);\n}\n.cart-item-enter-from[data-v-036d8ab8] {\n  opacity: 0;\n  transform: scale(0.8);\n}\n.cart-item-leave-to[data-v-036d8ab8] {\n  opacity: 0;\n  transform: scale(0.8);\n}\n.cart-item[data-v-036d8ab8] {\n  display: flex;\n  gap: var(--menoo-spacing-2, 16px);\n  padding: var(--menoo-spacing-2, 16px);\n  border-bottom: 1px solid var(--menoo-border, #e0e0e0);\n  background: var(--menoo-surface, #ffffff);\n}\n.cart-item[data-v-036d8ab8]:last-child {\n  border-bottom: none;\n}\n.item-details[data-v-036d8ab8] {\n  flex: 1;\n  min-width: 0;\n}\n.item-name[data-v-036d8ab8] {\n  font-weight: var(--menoo-font-weight-medium, 500);\n  margin-bottom: 4px;\n}\n.item-options[data-v-036d8ab8] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin-bottom: 4px;\n}\n.item-note[data-v-036d8ab8] {\n  font-size: var(--menoo-font-size-sm, 0.875rem);\n  color: var(--menoo-text-secondary, #757575);\n  font-style: italic;\n}\n.item-price[data-v-036d8ab8] {\n  font-weight: var(--menoo-font-weight-bold, 700);\n  color: var(--menoo-primary, #f0ac28);\n  margin-top: 4px;\n}\n.item-quantity[data-v-036d8ab8] {\n  display: flex;\n  align-items: center;\n  gap: var(--menoo-spacing-1, 8px);\n}\n.qty-btn[data-v-036d8ab8] {\n  width: 28px;\n  height: 28px;\n  border: 1px solid var(--menoo-border, #e0e0e0);\n  border-radius: var(--menoo-radius-sm, 4px);\n  background: white;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  transition: all var(--menoo-transition-fast, 150ms);\n  font-size: 16px;\n  padding: 0;\n}\n.qty-btn[data-v-036d8ab8]:hover {\n  background: var(--menoo-hover, #f5f5f5);\n  transform: scale(1.1);\n}\n.qty-btn[data-v-036d8ab8]:active {\n  transform: scale(0.95);\n}\n.qty-value[data-v-036d8ab8] {\n  min-width: 24px;\n  text-align: center;\n  font-weight: var(--menoo-font-weight-medium, 500);\n  transition: all 0.3s ease;\n}\n.qty-value.qty-animate[data-v-036d8ab8] {\n  animation: qtyAnimation-036d8ab8 0.3s ease;\n}\n@keyframes qtyAnimation-036d8ab8 {\n0% {\n    transform: scale(1);\n    color: inherit;\n}\n50% {\n    transform: scale(1.3);\n    color: var(--menoo-primary, #f0ac28);\n    font-weight: var(--menoo-font-weight-bold, 700);\n}\n100% {\n    transform: scale(1);\n    color: inherit;\n}\n}\n.cart-summary[data-v-036d8ab8] {\n  border-top: 2px solid var(--menoo-border, #e0e0e0);\n  padding-top: var(--menoo-spacing-2, 16px);\n}\n.summary-row[data-v-036d8ab8] {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: var(--menoo-spacing-1, 8px);\n  font-size: var(--menoo-font-size-md, 1rem);\n}\n.summary-label[data-v-036d8ab8] {\n  color: var(--menoo-text-secondary, #757575);\n}\n.summary-value[data-v-036d8ab8] {\n  font-weight: var(--menoo-font-weight-medium, 500);\n}\n.summary-total[data-v-036d8ab8] {\n  font-size: var(--menoo-font-size-lg, 1.125rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  margin-top: var(--menoo-spacing-1, 8px);\n  padding-top: var(--menoo-spacing-1, 8px);\n  border-top: 1px solid var(--menoo-border, #e0e0e0);\n}\n.summary-total .summary-value[data-v-036d8ab8] {\n  color: var(--menoo-primary, #f0ac28);\n}\n.checkout-btn[data-v-036d8ab8] {\n  width: 100%;\n  padding: var(--menoo-spacing-2, 16px);\n  margin-top: var(--menoo-spacing-2, 16px);\n  background: var(--menoo-primary, #f0ac28);\n  color: white;\n  border: none;\n  border-radius: var(--menoo-radius-md, 8px);\n  font-size: var(--menoo-font-size-md, 1rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  cursor: pointer;\n  transition: all 0.3s ease;\n}\n.checkout-btn[data-v-036d8ab8]:hover:not(:disabled) {\n  background: var(--menoo-primary-dark, #996d1a);\n  transform: translateY(-2px);\n  box-shadow: 0 4px 12px rgba(240, 172, 40, 0.4);\n}\n.checkout-btn[data-v-036d8ab8]:active:not(:disabled) {\n  transform: translateY(0);\n  box-shadow: 0 2px 4px rgba(240, 172, 40, 0.3);\n}\n.checkout-btn[data-v-036d8ab8]:disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n  background: var(--menoo-text-secondary, #757575);\n}\n.delivery-hint[data-v-036d8ab8] {\n  font-size: var(--menoo-font-size-xs, 0.75rem);\n  color: var(--menoo-success, #388e3c);\n  margin-top: 4px;\n}\n\n/* Clear cart confirmation modal */\n.clear-confirm-overlay[data-v-036d8ab8] {\n  position: fixed;\n  inset: 0;\n  background: rgba(0, 0, 0, 0.5);\n  z-index: 9999;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  padding: var(--menoo-spacing-2, 16px);\n}\n.clear-confirm-dialog[data-v-036d8ab8] {\n  background: var(--menoo-surface, #ffffff);\n  border-radius: var(--menoo-radius-md, 8px);\n  padding: var(--menoo-spacing-3, 24px);\n  max-width: 360px;\n  width: 100%;\n  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);\n}\n.confirm-title[data-v-036d8ab8] {\n  font-size: var(--menoo-font-size-lg, 1.125rem);\n  font-weight: var(--menoo-font-weight-bold, 700);\n  margin: 0 0 var(--menoo-spacing-1, 8px);\n  color: var(--menoo-text-primary, #212121);\n}\n.confirm-message[data-v-036d8ab8] {\n  font-size: var(--menoo-font-size-md, 1rem);\n  color: var(--menoo-text-secondary, #757575);\n  margin: 0 0 var(--menoo-spacing-3, 24px);\n  line-height: 1.5;\n}\n.confirm-actions[data-v-036d8ab8] {\n  display: flex;\n  gap: var(--menoo-spacing-1, 8px);\n  justify-content: flex-end;\n}\n.confirm-btn[data-v-036d8ab8] {\n  padding: 8px 20px;\n  border-radius: var(--menoo-radius-sm, 4px);\n  font-size: var(--menoo-font-size-md, 1rem);\n  font-weight: var(--menoo-font-weight-medium, 500);\n  cursor: pointer;\n  transition: all 0.2s ease;\n  border: none;\n}\n.confirm-btn-cancel[data-v-036d8ab8] {\n  background: transparent;\n  border: 1px solid var(--menoo-border, #e0e0e0);\n  color: var(--menoo-text-primary, #212121);\n}\n.confirm-btn-cancel[data-v-036d8ab8]:hover {\n  background: var(--menoo-hover, #f5f5f5);\n}\n.confirm-btn-confirm[data-v-036d8ab8] {\n  background: var(--menoo-primary, #f0ac28);\n  color: white;\n}\n.confirm-btn-confirm[data-v-036d8ab8]:hover {\n  background: var(--menoo-primary-dark, #996d1a);\n  transform: translateY(-1px);\n  box-shadow: 0 2px 8px rgba(240, 172, 40, 0.4);\n}\n.confirm-btn-confirm[data-v-036d8ab8]:active {\n  transform: translateY(0);\n}\n\n/* Confirm modal transitions */\n.confirm-fade-enter-active[data-v-036d8ab8],\n.confirm-fade-leave-active[data-v-036d8ab8] {\n  transition: opacity 0.25s ease;\n}\n.confirm-fade-enter-from[data-v-036d8ab8],\n.confirm-fade-leave-to[data-v-036d8ab8] {\n  opacity: 0;\n}\n.confirm-slide-enter-active[data-v-036d8ab8] {\n  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\n}\n.confirm-slide-leave-active[data-v-036d8ab8] {\n  transition: all 0.2s ease;\n}\n.confirm-slide-enter-from[data-v-036d8ab8] {\n  opacity: 0;\n  transform: translateY(20px) scale(0.95);\n}\n.confirm-slide-leave-to[data-v-036d8ab8] {\n  opacity: 0;\n  transform: translateY(-10px) scale(0.95);\n}\n@media (max-width: 768px) {\n.cart-container[data-v-036d8ab8] {\n    position: static;\n    max-height: none;\n}\n.clear-confirm-dialog[data-v-036d8ab8] {\n    max-width: none;\n    width: 90%;\n}\n}\n";
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -8601,7 +8694,7 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const MenooCart = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["styles", [_style_0$6]], ["__scopeId", "data-v-8f6fd6aa"]]);
+const MenooCart = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["styles", [_style_0$6]], ["__scopeId", "data-v-036d8ab8"]]);
 const delta = 2.5;
 const VueHorizontal = /* @__PURE__ */ defineComponent({
   name: "VueHorizontal",

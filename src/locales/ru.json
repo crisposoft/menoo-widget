@@ -10,7 +10,12 @@
     "deliveryFreeOver": "Бесплатная доставка при заказе от {amount}",
     "total": "Итого",
     "checkout": "Перейти к оформлению",
-    "free": "Бесплатно"
+    "free": "Бесплатно",
+    "clear": "Очистить корзину",
+    "clearConfirmTitle": "Очистить корзину?",
+    "clearConfirmMessage": "Все товары будут удалены из корзины.",
+    "clearConfirmYes": "Да, очистить",
+    "clearConfirmNo": "Отмена"
   },
   "menu": {
     "search": "Поиск",

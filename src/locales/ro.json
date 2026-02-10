@@ -10,7 +10,12 @@
     "deliveryFreeOver": "Livrare gratuită pentru comenzi peste {amount}",
     "total": "Total",
     "checkout": "Continuă la finalizare",
-    "free": "Gratuit"
+    "free": "Gratuit",
+    "clear": "Golește coșul",
+    "clearConfirmTitle": "Golești coșul?",
+    "clearConfirmMessage": "Toate produsele vor fi eliminate din coș.",
+    "clearConfirmYes": "Da, golește",
+    "clearConfirmNo": "Anulează"
   },
   "menu": {
     "search": "Caută",

@@ -2,6 +2,7 @@ import { apiClient } from "./core/api-client";
 import { i18n } from "./services/i18n";
 import {
   pinia,
+  useDiscountsStore,
   useMenusStore,
   useMetadataStore,
   useOrderStore,
@@ -71,11 +72,14 @@ export class MenooSDK {
       const menusStore = useMenusStore(pinia);
       const metadataStore = useMetadataStore(pinia);
       const orderStore = useOrderStore(pinia);
+      const discountsStore = useDiscountsStore(pinia);
 
       restaurantStore.updateRestaurant(data.data);
       menusStore.updateMenus(data.menus);
       metadataStore.updateMetadata(data.metadata);
+      discountsStore.setDiscounts(data.discounts ?? []);
       orderStore.initCart(config.restaurantId);
+      orderStore.syncItemsWithMenu(data.menus);
 
       // Render layout
       this.renderFullLayout();

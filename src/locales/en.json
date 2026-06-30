@@ -15,7 +15,36 @@
     "clearConfirmTitle": "Clear cart?",
     "clearConfirmMessage": "All items will be removed from your cart.",
     "clearConfirmYes": "Yes, clear",
-    "clearConfirmNo": "Cancel"
+    "clearConfirmNo": "Cancel",
+    "discount": {
+      "badge": {
+        "scope": {
+          "order": "on the whole order",
+          "items": "on select items"
+        },
+        "target": {
+          "menus": {
+            "one": "on menu {names}",
+            "many": "on menus {names}"
+          },
+          "categories": {
+            "one": "on category {names}",
+            "many": "on categories {names}"
+          },
+          "products": {
+            "one": "on {names}",
+            "many": "on {names}"
+          }
+        },
+        "more": "{names} +{count}",
+        "orderType": {
+          "delivery": "delivery",
+          "pickup": "pickup",
+          "table": "dine-in"
+        }
+      },
+      "savings": "You saved {amount}"
+    }
   },
   "menu": {
     "search": "Search",

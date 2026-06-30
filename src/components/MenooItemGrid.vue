@@ -34,7 +34,7 @@
               {{ item.description }}
             </p>
             <div class="item-footer">
-              <span class="item-price">{{ formatPrice(item.price) }}</span>
+              <MenooItemPrice :item="item" />
               <button
                 v-if="item.available !== false"
                 class="item-add-btn"
@@ -61,10 +61,11 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 import { useActive } from "vue-use-active-scroll";
-import { useCart, useFormatPrice, useRestaurant } from "../composables";
+import { useCart, useRestaurant } from "../composables";
 import { i18n } from "../services/i18n";
 import type { Category, MenuItem } from "../types";
 import MenooItemDialog from "./MenooItemDialog.vue";
+import MenooItemPrice from "./MenooItemPrice.vue";
 
 const props = defineProps<{
   category?: string;
@@ -77,7 +78,6 @@ const emit = defineEmits<{
 
 const { addToCart } = useCart();
 const { menus } = useRestaurant();
-const { formatPrice } = useFormatPrice();
 const itemGridRef = ref<HTMLElement>();
 
 // Dialog state
@@ -352,12 +352,6 @@ defineExpose({
   margin-top: auto;
 }
 
-.item-price {
-  font-size: var(--menoo-font-size-lg, 1.125rem);
-  font-weight: var(--menoo-font-weight-bold, 700);
-  color: var(--menoo-primary, #f0ac28);
-}
-
 .item-add-btn {
   padding: 6px 16px;
   background: var(--menoo-primary, #f0ac28);
@@ -466,11 +460,6 @@ defineExpose({
     flex-direction: column;
     gap: 8px;
     align-items: stretch;
-  }
-
-  .item-price {
-    text-align: center;
-    font-size: var(--menoo-font-size-md, 1rem);
   }
 
   .item-add-btn {

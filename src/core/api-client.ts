@@ -111,6 +111,7 @@ export class ApiClient {
         type?: string;
       };
       menus: RestaurantResponse["menus"];
+      discounts?: RestaurantResponse["discounts"];
     }>(endpoint);
 
     // Transform API response to match expected structure
@@ -126,6 +127,7 @@ export class ApiClient {
       },
       metadata: response.restaurant.metadata,
       menus: response.menus,
+      discounts: response.discounts ?? [],
       isPremium:
         !!response.restaurant.type && response.restaurant.type !== "standard",
     };

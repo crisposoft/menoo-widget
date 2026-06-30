@@ -15,7 +15,36 @@
     "clearConfirmTitle": "Очистить корзину?",
     "clearConfirmMessage": "Все товары будут удалены из корзины.",
     "clearConfirmYes": "Да, очистить",
-    "clearConfirmNo": "Отмена"
+    "clearConfirmNo": "Отмена",
+    "discount": {
+      "badge": {
+        "scope": {
+          "order": "на весь заказ",
+          "items": "на некоторые товары"
+        },
+        "target": {
+          "menus": {
+            "one": "на меню {names}",
+            "many": "на меню {names}"
+          },
+          "categories": {
+            "one": "на категорию {names}",
+            "many": "на категории {names}"
+          },
+          "products": {
+            "one": "на {names}",
+            "many": "на {names}"
+          }
+        },
+        "more": "{names} +{count}",
+        "orderType": {
+          "delivery": "доставка",
+          "pickup": "самовывоз",
+          "table": "в зале"
+        }
+      },
+      "savings": "Вы сэкономили {amount}"
+    }
   },
   "menu": {
     "search": "Поиск",

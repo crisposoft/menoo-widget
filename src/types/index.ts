@@ -1,3 +1,5 @@
+import type { ItemDiscountPricing, PublicDiscount } from "../utils/discounts";
+
 // Core data types
 export interface Restaurant {
   _id: string;
@@ -56,6 +58,8 @@ export interface MenuItem {
   options?: ItemOption[];
   category: string;
   available?: boolean;
+  // Promotional pricing embedded by the public API (automatic discounts only).
+  discount?: ItemDiscountPricing;
 }
 
 export interface ItemOption {
@@ -114,6 +118,8 @@ export interface RestaurantResponse {
   menus: MenuData[];
   metadata: Metadata;
   isPremium: boolean;
+  // Restaurant-level automatic discounts returned by the public API.
+  discounts?: PublicDiscount[];
 }
 
 // Event types

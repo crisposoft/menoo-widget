@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { Cart, CartItem, MenuItem, OptionSelection } from "../types";
+import type { Cart, CartItem, MenuData, MenuItem, OptionSelection } from "../types";
 
 const STORAGE_KEY = "menoo-order";
 
@@ -71,7 +71,42 @@ export const useOrderStore = defineStore("order", {
         // First time initialization - set restaurant ID
         this.restaurant = restaurantId;
       }
-      // If restaurant matches existing, do nothing - keep the cart as is
+      // If restaurant matches existing, keep the cart as is. The widget has no
+      // order-type selector yet, so normalise any stale persisted type to keep
+      // discount visibility deterministic (delivery).
+      this.type = "delivery";
+      saveToStorage(this.$state);
+    },
+
+    // Re-point persisted cart lines at the freshly fetched menu items so prices
+    // and embedded discounts reflect the current catalog, not a stale snapshot.
+    syncItemsWithMenu(menus: MenuData[]) {
+      if (this.cart.items.length === 0) {
+        return;
+      }
+      const byId = new Map<string, MenuItem>();
+      for (const menu of menus) {
+        for (const category of menu.categories) {
+          for (const item of category.items) {
+            byId.set(item._id, item);
+          }
+        }
+      }
+      let changed = false;
+      for (const cartItem of this.cart.items) {
+        const fresh = byId.get(cartItem.item._id);
+        if (fresh) {
+          cartItem.item = fresh;
+          cartItem.price =
+            this.calculateItemPrice(fresh, cartItem.options) *
+            cartItem.quantity;
+          changed = true;
+        }
+      }
+      if (changed) {
+        this.recalculateCart();
+        saveToStorage(this.$state);
+      }
     },
 
     addOrder(

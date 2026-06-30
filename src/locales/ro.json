@@ -15,7 +15,36 @@
     "clearConfirmTitle": "Golești coșul?",
     "clearConfirmMessage": "Toate produsele vor fi eliminate din coș.",
     "clearConfirmYes": "Da, golește",
-    "clearConfirmNo": "Anulează"
+    "clearConfirmNo": "Anulează",
+    "discount": {
+      "badge": {
+        "scope": {
+          "order": "la toată comanda",
+          "items": "la unele articole"
+        },
+        "target": {
+          "menus": {
+            "one": "la meniul {names}",
+            "many": "la meniurile {names}"
+          },
+          "categories": {
+            "one": "la categoria {names}",
+            "many": "la categoriile {names}"
+          },
+          "products": {
+            "one": "la {names}",
+            "many": "la {names}"
+          }
+        },
+        "more": "{names} +{count}",
+        "orderType": {
+          "delivery": "livrare",
+          "pickup": "ridicare",
+          "table": "la masă"
+        }
+      },
+      "savings": "Ai economisit {amount}"
+    }
   },
   "menu": {
     "search": "Caută",

@@ -29,6 +29,7 @@
             <!-- Item Details -->
             <div class="dialog-body">
               <h2 class="dialog-title">{{ item.name }}</h2>
+              <MenooItemPrice :item="item" class="dialog-price" />
               <p v-if="item.description" class="dialog-description">
                 {{ item.description }}
               </p>
@@ -87,10 +88,11 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import { useCart, useFormatPrice } from "../composables";
+import { useCart, useFormatPrice, useItemDiscount } from "../composables";
 import { i18n } from "../services/i18n";
 import type { MenuItem, OptionSelection } from "../types";
 import MenooItemOptions from "./MenooItemOptions.vue";
+import MenooItemPrice from "./MenooItemPrice.vue";
 
 const props = defineProps<{
   show: boolean;
@@ -103,6 +105,7 @@ const emit = defineEmits<{
 
 const { addToCart } = useCart();
 const { formatPrice } = useFormatPrice();
+const { discountedUnitPrice } = useItemDiscount(() => props.item);
 const { t } = i18n.global;
 
 const quantity = ref(1);
@@ -112,7 +115,7 @@ const optionsValid = ref(true);
 
 // Calculate total price including options
 const totalPrice = computed(() => {
-  let price = props.item.price;
+  let price = discountedUnitPrice.value ?? props.item.price;
 
   // Add options prices
   if (selectedOptions.value.length > 0 && props.item.options) {
@@ -307,6 +310,10 @@ watch(
   font-weight: var(--menoo-font-weight-bold, 700);
   margin: 0 0 var(--menoo-spacing-2, 16px) 0;
   color: var(--menoo-text-primary, #212121);
+}
+
+.dialog-price {
+  margin-bottom: var(--menoo-spacing-2, 16px);
 }
 
 .dialog-description {

@@ -39,7 +39,17 @@
                 <div v-if="cartItem.note" class="item-note">
                   {{ cartItem.note }}
                 </div>
-                <div class="item-price">{{ formatPrice(cartItem.price) }}</div>
+                <div class="item-price">
+                  <template v-if="lineDiscounts[index].hasDiscount">
+                    <span class="item-price__discounted">{{
+                      formatPrice(lineDiscounts[index].discountedLineTotal)
+                    }}</span>
+                    <span class="item-price__original">{{
+                      formatPrice(lineDiscounts[index].originalLineTotal)
+                    }}</span>
+                  </template>
+                  <template v-else>{{ formatPrice(cartItem.price) }}</template>
+                </div>
               </div>
               <div class="item-quantity">
                 <button class="qty-btn" @click="decreaseQuantity(index)">
@@ -62,9 +72,20 @@
         <div class="cart-summary">
           <div class="summary-row">
             <span class="summary-label">{{ t("cart.subtotal") }}</span>
-            <span class="summary-value">{{
-              formatPrice(cart.totalPrice)
-            }}</span>
+            <span class="summary-value">
+              <template v-if="hasAnyDiscount">
+                <span class="summary-value__discounted">{{
+                  formatPrice(discountedSubtotal)
+                }}</span>
+                <span class="summary-value__original">{{
+                  formatPrice(cart.totalPrice)
+                }}</span>
+              </template>
+              <template v-else>{{ formatPrice(cart.totalPrice) }}</template>
+            </span>
+          </div>
+          <div v-if="hasAnyDiscount" class="summary-savings">
+            {{ t("cart.discount.savings", { amount: formatPrice(totalSavings) }) }}
           </div>
         </div>
 
@@ -105,7 +126,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useCart, useFormatPrice } from "../composables";
+import { useCart, useCartDiscounts, useFormatPrice } from "../composables";
 import { i18n } from "../services/i18n";
 import { useRestaurantStore } from "../stores";
 import type { CartItem } from "../types";
@@ -116,6 +137,8 @@ const emit = defineEmits<{
 
 const { cart, updateCartItemQuantity, clearCart } = useCart();
 const { formatPrice } = useFormatPrice();
+const { lineDiscounts, totalSavings, discountedSubtotal, hasAnyDiscount } =
+  useCartDiscounts();
 const restaurantStore = useRestaurantStore();
 
 const animatingItems = ref<Set<number>>(new Set());
@@ -438,6 +461,34 @@ const t = (key: string, replacements?: Record<string, string | number>) =>
 
 .summary-value {
   font-weight: var(--menoo-font-weight-medium, 500);
+}
+
+.item-price__original {
+  font-size: var(--menoo-font-size-sm, 0.875rem);
+  font-weight: var(--menoo-font-weight-regular, 400);
+  color: var(--menoo-text-secondary, #757575);
+  text-decoration: line-through;
+  margin-left: 6px;
+}
+
+.summary-value__discounted {
+  color: var(--menoo-primary, #f0ac28);
+  font-weight: var(--menoo-font-weight-bold, 700);
+}
+
+.summary-value__original {
+  font-size: var(--menoo-font-size-sm, 0.875rem);
+  color: var(--menoo-text-secondary, #757575);
+  text-decoration: line-through;
+  margin-left: 6px;
+}
+
+.summary-savings {
+  display: flex;
+  justify-content: flex-end;
+  font-size: var(--menoo-font-size-sm, 0.875rem);
+  color: var(--menoo-success, #388e3c);
+  margin-top: 4px;
 }
 
 .summary-total {

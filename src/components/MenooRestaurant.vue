@@ -22,6 +22,7 @@
         </p>
       </div>
     </div>
+    <MenooDiscountBadges />
   </div>
 </template>
 
@@ -30,6 +31,7 @@ import { computed } from "vue";
 import { useRestaurant } from "../composables";
 import { i18n } from "../services/i18n";
 import { getSlug } from "../utils/strings";
+import MenooDiscountBadges from "./MenooDiscountBadges.vue";
 
 const { restaurant } = useRestaurant();
 

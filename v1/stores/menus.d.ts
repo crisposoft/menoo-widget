@@ -31,6 +31,15 @@ export declare const useMenusStore: import('pinia').StoreDefinition<"menus", {
                     }[] | undefined;
                     category: string;
                     available?: boolean | undefined;
+                    discount?: {
+                        discount: string;
+                        rewardKind: import('../utils/discounts').DiscountRewardKind;
+                        originalPrice: number;
+                        discountedPrice: number | null;
+                        percentage?: number | undefined;
+                        buy?: number | undefined;
+                        get?: number | undefined;
+                    } | undefined;
                 }[];
                 order?: number | undefined;
             }[];
@@ -65,6 +74,15 @@ export declare const useMenusStore: import('pinia').StoreDefinition<"menus", {
                 }[] | undefined;
                 category: string;
                 available?: boolean | undefined;
+                discount?: {
+                    discount: string;
+                    rewardKind: import('../utils/discounts').DiscountRewardKind;
+                    originalPrice: number;
+                    discountedPrice: number | null;
+                    percentage?: number | undefined;
+                    buy?: number | undefined;
+                    get?: number | undefined;
+                } | undefined;
             }[];
             order?: number | undefined;
         }[];
@@ -98,6 +116,15 @@ export declare const useMenusStore: import('pinia').StoreDefinition<"menus", {
                     }[] | undefined;
                     category: string;
                     available?: boolean | undefined;
+                    discount?: {
+                        discount: string;
+                        rewardKind: import('../utils/discounts').DiscountRewardKind;
+                        originalPrice: number;
+                        discountedPrice: number | null;
+                        percentage?: number | undefined;
+                        buy?: number | undefined;
+                        get?: number | undefined;
+                    } | undefined;
                 }[];
                 order?: number | undefined;
             }[];
@@ -132,6 +159,15 @@ export declare const useMenusStore: import('pinia').StoreDefinition<"menus", {
                 }[] | undefined;
                 category: string;
                 available?: boolean | undefined;
+                discount?: {
+                    discount: string;
+                    rewardKind: import('../utils/discounts').DiscountRewardKind;
+                    originalPrice: number;
+                    discountedPrice: number | null;
+                    percentage?: number | undefined;
+                    buy?: number | undefined;
+                    get?: number | undefined;
+                } | undefined;
             }[];
             order?: number | undefined;
         }[];
@@ -165,6 +201,15 @@ export declare const useMenusStore: import('pinia').StoreDefinition<"menus", {
                     }[] | undefined;
                     category: string;
                     available?: boolean | undefined;
+                    discount?: {
+                        discount: string;
+                        rewardKind: import('../utils/discounts').DiscountRewardKind;
+                        originalPrice: number;
+                        discountedPrice: number | null;
+                        percentage?: number | undefined;
+                        buy?: number | undefined;
+                        get?: number | undefined;
+                    } | undefined;
                 }[];
                 order?: number | undefined;
             }[];

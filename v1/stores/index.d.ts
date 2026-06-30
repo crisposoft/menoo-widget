@@ -1,4 +1,5 @@
 export declare const pinia: import('pinia').Pinia;
+export { useDiscountsStore } from './discounts';
 export { useMenusStore } from './menus';
 export { useMetadataStore } from './metadata';
 export { useOrderStore } from './order';

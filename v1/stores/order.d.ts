@@ -1,4 +1,4 @@
-import { Cart, CartItem, MenuItem, OptionSelection } from '../types';
+import { Cart, CartItem, MenuData, MenuItem, OptionSelection } from '../types';
 export declare const useOrderStore: import('pinia').StoreDefinition<"order", {
     type: "delivery" | "pickup";
     restaurant: string;
@@ -31,6 +31,15 @@ export declare const useOrderStore: import('pinia').StoreDefinition<"order", {
                     }[] | undefined;
                     category: string;
                     available?: boolean | undefined;
+                    discount?: {
+                        discount: string;
+                        rewardKind: import('../utils/discounts').DiscountRewardKind;
+                        originalPrice: number;
+                        discountedPrice: number | null;
+                        percentage?: number | undefined;
+                        buy?: number | undefined;
+                        get?: number | undefined;
+                    } | undefined;
                 };
                 quantity: number;
                 options?: {
@@ -71,6 +80,15 @@ export declare const useOrderStore: import('pinia').StoreDefinition<"order", {
                 }[] | undefined;
                 category: string;
                 available?: boolean | undefined;
+                discount?: {
+                    discount: string;
+                    rewardKind: import('../utils/discounts').DiscountRewardKind;
+                    originalPrice: number;
+                    discountedPrice: number | null;
+                    percentage?: number | undefined;
+                    buy?: number | undefined;
+                    get?: number | undefined;
+                } | undefined;
             };
             quantity: number;
             options?: {
@@ -110,6 +128,15 @@ export declare const useOrderStore: import('pinia').StoreDefinition<"order", {
                     }[] | undefined;
                     category: string;
                     available?: boolean | undefined;
+                    discount?: {
+                        discount: string;
+                        rewardKind: import('../utils/discounts').DiscountRewardKind;
+                        originalPrice: number;
+                        discountedPrice: number | null;
+                        percentage?: number | undefined;
+                        buy?: number | undefined;
+                        get?: number | undefined;
+                    } | undefined;
                 };
                 quantity: number;
                 options?: {
@@ -154,6 +181,15 @@ export declare const useOrderStore: import('pinia').StoreDefinition<"order", {
                     }[] | undefined;
                     category: string;
                     available?: boolean | undefined;
+                    discount?: {
+                        discount: string;
+                        rewardKind: import('../utils/discounts').DiscountRewardKind;
+                        originalPrice: number;
+                        discountedPrice: number | null;
+                        percentage?: number | undefined;
+                        buy?: number | undefined;
+                        get?: number | undefined;
+                    } | undefined;
                 };
                 quantity: number;
                 options?: {
@@ -173,6 +209,7 @@ export declare const useOrderStore: import('pinia').StoreDefinition<"order", {
     }>) => number;
 }, {
     initCart(restaurantId: string): void;
+    syncItemsWithMenu(menus: MenuData[]): void;
     addOrder(item: MenuItem, options?: OptionSelection[], note?: string, quantity?: number): void;
     removeOrder(index: number): void;
     updateCartItemQuantity(index: number, quantity: number): void;

@@ -1,5 +1,7 @@
+import { MaybeRefOrGetter } from 'vue';
 import { MenuItem, OptionSelection } from '../types';
 import { ApiOrderItem } from '../utils/cart';
+import { ItemDiscountPricing } from '../utils/discounts';
 export declare function useCart(): {
     cart: import('vue').ComputedRef<{
         items: {
@@ -25,6 +27,15 @@ export declare function useCart(): {
                 }[] | undefined;
                 category: string;
                 available?: boolean | undefined;
+                discount?: {
+                    discount: string;
+                    rewardKind: import('../utils/discounts').DiscountRewardKind;
+                    originalPrice: number;
+                    discountedPrice: number | null;
+                    percentage?: number | undefined;
+                    buy?: number | undefined;
+                    get?: number | undefined;
+                } | undefined;
             };
             quantity: number;
             options?: {
@@ -149,6 +160,15 @@ export declare function useRestaurant(): {
                 }[] | undefined;
                 category: string;
                 available?: boolean | undefined;
+                discount?: {
+                    discount: string;
+                    rewardKind: import('../utils/discounts').DiscountRewardKind;
+                    originalPrice: number;
+                    discountedPrice: number | null;
+                    percentage?: number | undefined;
+                    buy?: number | undefined;
+                    get?: number | undefined;
+                } | undefined;
             }[];
             order?: number | undefined;
         }[];
@@ -156,4 +176,21 @@ export declare function useRestaurant(): {
 };
 export declare function useFormatPrice(): {
     formatPrice: (price: number) => string;
+};
+export declare function useItemDiscount(item: MaybeRefOrGetter<MenuItem>): {
+    pricing: import('vue').ComputedRef<ItemDiscountPricing | null>;
+    discountedUnitPrice: import('vue').ComputedRef<number | null>;
+    badgeLabel: import('vue').ComputedRef<string>;
+};
+export interface CartLineDiscount {
+    hasDiscount: boolean;
+    lineSaving: number;
+    originalLineTotal: number;
+    discountedLineTotal: number;
+}
+export declare function useCartDiscounts(): {
+    lineDiscounts: import('vue').ComputedRef<CartLineDiscount[]>;
+    totalSavings: import('vue').ComputedRef<number>;
+    discountedSubtotal: import('vue').ComputedRef<number>;
+    hasAnyDiscount: import('vue').ComputedRef<boolean>;
 };

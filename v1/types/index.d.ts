@@ -1,3 +1,4 @@
+import { ItemDiscountPricing, PublicDiscount } from '../utils/discounts';
 export interface Restaurant {
     _id: string;
     slug?: string;
@@ -52,6 +53,7 @@ export interface MenuItem {
     options?: ItemOption[];
     category: string;
     available?: boolean;
+    discount?: ItemDiscountPricing;
 }
 export interface ItemOption {
     _id: string;
@@ -100,6 +102,7 @@ export interface RestaurantResponse {
     menus: MenuData[];
     metadata: Metadata;
     isPremium: boolean;
+    discounts?: PublicDiscount[];
 }
 export interface WidgetEvents {
     "menoo:ready": {
